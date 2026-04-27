@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cyberleo-gold: #FFB800;
+  --cyberleo-blue: #0099FF;
+  --cyberleo-orange: #FF6B35;
+  --cyberleo-cyan: #00D4FF;
+  --cyberleo-warm: #FFF8E7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(180deg, #FFF8E7 0%, #FFE4B5 100%);
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', sans-serif;
+}
+
+/* CyberLeo button styles */
+.btn-cyberleo {
+  @apply px-6 py-3 rounded-2xl font-bold text-lg transition-all duration-300;
+  @apply bg-gradient-to-r from-cyberleo-gold to-cyberleo-orange;
+  @apply text-white shadow-lg;
+  @apply hover:scale-105 hover:shadow-xl;
+  @apply active:scale-95;
+}
+
+.btn-cyberleo-blue {
+  @apply px-6 py-3 rounded-2xl font-bold text-lg transition-all duration-300;
+  @apply bg-gradient-to-r from-cyberleo-blue to-cyberleo-cyan;
+  @apply text-white shadow-lg;
+  @apply hover:scale-105 hover:shadow-xl;
+  @apply active:scale-95;
+}
+
+/* Card styles */
+.card-cyberleo {
+  @apply bg-white rounded-3xl p-6 shadow-xl;
+  @apply border-4 border-cyberleo-gold/20;
+  @apply transition-all duration-300;
+  @apply hover:shadow-2xl hover:scale-[1.02];
+}
+
+/* Glow effect */
+.glow-gold {
+  box-shadow: 0 0 15px rgba(255, 184, 0, 0.5),
+              0 0 30px rgba(255, 184, 0, 0.3);
+}
+
+.glow-blue {
+  box-shadow: 0 0 15px rgba(0, 153, 255, 0.5),
+              0 0 30px rgba(0, 153, 255, 0.3);
+}
+
+/* Animated background elements */
+.bg-sparkle {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-sparkle::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,184,0,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: sparkle-bg 20s linear infinite;
+}
+
+@keyframes sparkle-bg {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50px, -50px); }
+}
+
+/* Story card */
+.story-card {
+  @apply bg-white rounded-3xl overflow-hidden shadow-lg;
+  @apply border-4 border-transparent;
+  @apply transition-all duration-300;
+}
+
+.story-card:hover {
+  @apply border-cyberleo-gold shadow-2xl;
+  transform: translateY(-8px);
+}
+
+/* Character card */
+.character-card {
+  @apply relative bg-white rounded-3xl p-6 shadow-lg;
+  @apply border-4 border-transparent;
+  @apply transition-all duration-300 cursor-pointer;
+}
+
+.character-card:hover {
+  @apply border-cyberleo-blue;
+  transform: scale(1.05);
+}
+
+/* Fiber optic effect */
+.fiber-glow {
+  background: linear-gradient(90deg,
+    var(--cyberleo-gold) 0%,
+    var(--cyberleo-orange) 25%,
+    var(--cyberleo-blue) 50%,
+    var(--cyberleo-cyan) 75%,
+    var(--cyberleo-gold) 100%
+  );
+  background-size: 200% 100%;
+  animation: fiber-flow 3s linear infinite;
+}
+
+@keyframes fiber-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF8E7;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FFB800, #FF6B35);
+  border-radius: 10px;
+  border: 3px solid #FFF8E7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF6B35, #FFB800);
+}
+
+/* Mobile touch improvements */
+@media (hover: none) {
+  .btn-cyberleo, .btn-cyberleo-blue {
+    @apply active:scale-95;
+  }
+
+  .story-card:active, .character-card:active {
+    transform: scale(0.98);
+  }
+}

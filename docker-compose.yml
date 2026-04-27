@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: cyberleo-frontend
+    restart: unless-stopped
+    ports:
+      - "3001:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  backend:
+    build: ./backend
+    container_name: cyberleo-backend
+    restart: unless-stopped
+    network_mode: host
+    env_file:
+      - .env
+    volumes:
+      - ./frontend/public/uploads:/home/sysadmin/cyberleo-website/frontend/public/uploads:ro
