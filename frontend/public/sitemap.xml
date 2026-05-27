@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemaps-image/0.9">
+
+  <!-- Home -->
+  <url>
+    <loc>https://cyberleo.it/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://cyberleo.it/images/book/cover.jpg</image:loc>
+      <image:title>Le Avventure di CyberLeo - copertina Vol. 1</image:title>
+    </image:image>
+  </url>
+
+  <!-- Il Libro + Autore -->
+  <url>
+    <loc>https://cyberleo.it/libro</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://cyberleo.it/autore</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Anteprime sonore -->
+  <url>
+    <loc>https://cyberleo.it/anteprime</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url><loc>https://cyberleo.it/anteprime/a-te-che-stai-per-leggere</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/come-e-nato-il-cybermondo</loc><priority>0.75</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/il-diario-di-miko</loc><priority>0.8</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/la-casa-dei-messaggi</loc><priority>0.8</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/la-busta-troppo-gentile</loc><priority>0.8</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/le-sentinelle-silenziose</loc><priority>0.8</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/le-sfere-ricordo-di-pixel</loc><priority>0.8</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/la-torre-dei-libri</loc><priority>0.8</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/la-fontana-che-canta</loc><priority>0.8</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/la-chiavetta-trovata</loc><priority>0.8</priority></url>
+  <url><loc>https://cyberleo.it/anteprime/la-notte-in-piazza</loc><priority>0.8</priority></url>
+
+  <!-- Sei Difese -->
+  <url><loc>https://cyberleo.it/sei-difese</loc><priority>0.85</priority></url>
+  <url><loc>https://cyberleo.it/sei-difese/chi-siamo-noi</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/sei-difese/doppia-chiave</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/sei-difese/attenzione-bugie</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/sei-difese/sentinelle</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/sei-difese/ricordi-al-sicuro</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/sei-difese/insieme</loc><priority>0.7</priority></url>
+
+  <!-- Personaggi -->
+  <url><loc>https://cyberleo.it/personaggi</loc><priority>0.85</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/cyberleo</loc><priority>0.75</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/lunabyte</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/miko</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/pixel</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/spark</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/iride</loc><priority>0.6</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/nonno-ottavio</loc><priority>0.6</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/fakefox</loc><priority>0.6</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/virus-vex</loc><priority>0.5</priority></url>
+  <url><loc>https://cyberleo.it/personaggi/shadowglitch</loc><priority>0.5</priority></url>
+
+  <!-- Custode -->
+  <url><loc>https://cyberleo.it/patto</loc><priority>0.75</priority></url>
+  <url><loc>https://cyberleo.it/diploma</loc><priority>0.75</priority></url>
+  <url><loc>https://cyberleo.it/glossarietto</loc><priority>0.75</priority></url>
+
+  <!-- Vol 2 teaser -->
+  <url><loc>https://cyberleo.it/vol2</loc><priority>0.6</priority></url>
+
+  <!-- Adulti -->
+  <url><loc>https://cyberleo.it/genitori</loc><priority>0.7</priority></url>
+  <url><loc>https://cyberleo.it/insegnanti</loc><priority>0.7</priority></url>
+
+  <!-- Avventure bonus -->
+  <url><loc>https://cyberleo.it/avventure</loc><priority>0.5</priority></url>
+  <url><loc>https://cyberleo.it/video</loc><priority>0.5</priority></url>
+  <url><loc>https://cyberleo.it/privacy</loc><priority>0.3</priority></url>
+
+</urlset>
