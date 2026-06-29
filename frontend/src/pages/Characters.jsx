@@ -165,7 +165,7 @@ export default function Characters() {
                       alt={character.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(character.name)} opacity-40`} />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(character.name)} opacity-20`} />
 
                     {/* Emoji badge */}
                     <div
@@ -265,7 +265,7 @@ export default function Characters() {
                 alt={selectedCharacter.name}
                 className="w-full h-full object-cover"
               />
-              <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(selectedCharacter.name)} opacity-50`} />
+              <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(selectedCharacter.name)} opacity-30`} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
               <button

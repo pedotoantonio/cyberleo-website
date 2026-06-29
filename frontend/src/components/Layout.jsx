@@ -1,6 +1,7 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { Menu, X, Shield } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function Layout() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
               <div className="relative">
-                <span className="text-4xl">🦁</span>
+                <Logo className="w-11 h-11 drop-shadow group-hover:scale-105 transition-transform" />
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyberleo-cyan rounded-full animate-pulse" />
               </div>
               <div className="flex flex-col">
@@ -108,7 +109,7 @@ export default function Layout() {
             {/* Brand */}
             <div className="text-center md:text-left">
               <div className="flex items-center gap-3 justify-center md:justify-start mb-4">
-                <span className="text-4xl">🦁</span>
+                <Logo className="w-10 h-10" />
                 <span className="text-2xl font-bold font-display">CyberLeo</span>
               </div>
               <p className="text-white/90">

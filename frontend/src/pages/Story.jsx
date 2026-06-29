@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Home, Star, Sparkles, ChevronLeft, ChevronRight 
 import useVoiceReader from '../hooks/useVoiceReader';
 import AudioPlayer from '../components/AudioPlayer';
 import KaraokeText from '../components/KaraokeText';
+import Logo from '../components/Logo';
 
 // Emoji decorative per le pagine
 const pageDecorations = ['🌟', '✨', '💫', '⭐', '🎀', '🎈', '🌈', '🦋', '🌸', '🍀'];
@@ -153,7 +154,7 @@ export default function Story() {
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-amber-100 to-orange-100">
-        <div className="text-8xl mb-6 animate-bounce">🦁</div>
+        <Logo className="w-28 h-28 mb-6 animate-bounce" />
         <div className="w-20 h-20 border-4 border-cyberleo-gold border-t-transparent rounded-full animate-spin" />
         <p className="mt-6 text-2xl font-bold text-amber-800 animate-pulse">
           Preparando la storia...
@@ -203,7 +204,7 @@ export default function Story() {
             </Link>
 
             <div className="flex items-center gap-2">
-              <span className="text-3xl">🦁</span>
+              <Logo className="w-9 h-9" />
               <span className="font-bold text-xl text-gray-800 hidden md:inline">CyberLeo</span>
             </div>
 
@@ -405,7 +406,7 @@ export default function Story() {
       {currentPage === totalPages - 1 && totalPages > 1 && (
         <div className="container mx-auto px-4 py-10">
           <div className="bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 rounded-3xl p-10 md:p-14 text-center text-white max-w-4xl mx-auto shadow-2xl">
-            <span className="text-[100px] block mb-6">🦁</span>
+            <Logo className="w-28 h-28 mx-auto mb-6" />
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Fine della Storia!
             </h2>

@@ -18,12 +18,12 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
-  background: linear-gradient(180deg, #FFF8E7 0%, #FFE4B5 100%);
+  background: linear-gradient(180deg, #FFFDF8 0%, #FFF8E7 100%);
   min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Fredoka', 'Nunito', sans-serif;
 }
 
 /* CyberLeo button styles */
@@ -105,6 +105,16 @@ h1, h2, h3, h4, h5, h6 {
 .character-card:hover {
   @apply border-cyberleo-blue;
   transform: scale(1.05);
+}
+
+/* Criniera di fibre ottiche del logo */
+.cyberleo-mane path {
+  animation: mane-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes mane-glow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
 }
 
 /* Fiber optic effect */

@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
+import Logo from '../components/Logo';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-sparkle flex items-center justify-center p-4">
       <div className="text-center">
         <div className="relative inline-block mb-8">
-          <span className="text-[150px] block">🦁</span>
+          <Logo className="w-40 h-40 mx-auto drop-shadow-xl" />
           <div className="absolute -top-2 -right-2 w-16 h-16 bg-cyberleo-gold rounded-full flex items-center justify-center shadow-lg animate-bounce">
             <span className="text-3xl">❓</span>
           </div>

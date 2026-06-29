@@ -40,7 +40,7 @@ export default function Home() {
       icon: Shield,
       title: 'Impara Giocando',
       description: 'Scopri come navigare in sicurezza e proteggere i tuoi dati!',
-      color: 'from-green-400 to-emerald-500',
+      color: 'from-cyberleo-green to-emerald-500',
       link: '/storie',
       image: '/images/heroes/firewall-fred.jpg'
     },
@@ -48,7 +48,7 @@ export default function Home() {
       icon: Play,
       title: 'Video Animati',
       description: 'Guarda i video delle avventure di CyberLeo!',
-      color: 'from-purple-400 to-pink-500',
+      color: 'from-cyberleo-purple to-cyberleo-pink',
       link: '/video',
       image: '/images/heroes/identita-digitale.jpg'
     }
@@ -82,24 +82,23 @@ export default function Home() {
             alt="CyberLeo Hero"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-cyberleo-warm via-transparent to-transparent" />
+          {/* Overlay brand-tinted per leggibilità (al posto del nero puro) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyberleo-dark/85 via-cyberleo-dark/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-cyberleo-warm via-transparent to-cyberleo-blue/15" />
         </div>
 
-        {/* Animated particles */}
-        <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 bg-cyberleo-gold/60 rounded-full animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
-              }}
-            />
-          ))}
+        {/* Motivo a fibre ottiche (firma del brand) */}
+        <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none h-2/3">
+          <svg className="w-full h-full" viewBox="0 0 1440 480" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" strokeWidth="3" strokeLinecap="round" className="cyberleo-mane">
+              <path d="M120 480 C 160 320 60 240 180 90" stroke="#FFB800" opacity="0.55" style={{ animationDelay: '0s' }} />
+              <path d="M340 480 C 300 340 420 260 320 120" stroke="#00D4FF" opacity="0.5" style={{ animationDelay: '0.3s' }} />
+              <path d="M560 480 C 600 320 520 220 640 110" stroke="#0099FF" opacity="0.5" style={{ animationDelay: '0.6s' }} />
+              <path d="M820 480 C 780 330 900 250 800 130" stroke="#FF6B35" opacity="0.5" style={{ animationDelay: '0.9s' }} />
+              <path d="M1080 480 C 1120 320 1020 230 1160 100" stroke="#7C5CFF" opacity="0.45" style={{ animationDelay: '1.2s' }} />
+              <path d="M1300 480 C 1260 340 1360 260 1280 140" stroke="#00D4FF" opacity="0.45" style={{ animationDelay: '1.5s' }} />
+            </g>
+          </svg>
         </div>
 
         <div className="container mx-auto px-4 relative z-20">
