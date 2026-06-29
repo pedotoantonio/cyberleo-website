@@ -297,22 +297,28 @@ export default function Home() {
 
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             {[
-              { emoji: '🦁', name: 'CyberLeo', color: 'bg-cyberleo-gold' },
-              { emoji: '🐞', name: 'Bitty', color: 'bg-red-500' },
-              { emoji: '🐻', name: 'Firewall Fred', color: 'bg-blue-600' },
-              { emoji: '🧚', name: 'Password Penny', color: 'bg-pink-500' },
-              { emoji: '☁️', name: 'Cloud Clara', color: 'bg-sky-400' },
-              { emoji: '🦇', name: 'Spammy', color: 'bg-purple-600' },
+              { img: '/images/avatars/cyberleo.png', name: 'CyberLeo', ring: 'ring-cyberleo-gold' },
+              { img: '/images/avatars/bitty.png', name: 'Bitty', ring: 'ring-red-400' },
+              { img: '/images/avatars/firewall_fred.png', name: 'Firewall Fred', ring: 'ring-blue-500' },
+              { img: '/images/avatars/password_penny.png', name: 'Password Penny', ring: 'ring-pink-400' },
+              { img: '/images/avatars/cloud_clara.png', name: 'Cloud Clara', ring: 'ring-sky-300' },
+              { img: '/images/avatars/spammy.png', name: 'Spammy', ring: 'ring-purple-400' },
             ].map((char, i) => (
-              <div
+              <Link
+                to="/personaggi"
                 key={i}
                 className="group flex flex-col items-center"
               >
-                <div className={`w-20 h-20 ${char.color} rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform cursor-pointer`}>
-                  <span className="text-4xl">{char.emoji}</span>
+                <div className={`w-24 h-24 rounded-full bg-white shadow-xl ring-4 ${char.ring} overflow-hidden group-hover:scale-110 transition-transform`}>
+                  <img
+                    src={char.img}
+                    alt={char.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <span className="mt-2 text-white font-semibold text-sm">{char.name}</span>
-              </div>
+              </Link>
             ))}
           </div>
 
