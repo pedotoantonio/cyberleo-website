@@ -210,6 +210,7 @@ export default function Story() {
             <button
               onClick={() => setFontSize(f => f === 'medium' ? 'large' : f === 'large' ? 'xlarge' : 'medium')}
               className="p-3 bg-blue-100 hover:bg-blue-200 rounded-full transition-colors"
+              aria-label="Cambia dimensione del testo"
             >
               <span className="text-lg font-bold text-blue-700">
                 {fontSize === 'medium' ? 'A' : fontSize === 'large' ? 'A+' : 'A++'}
@@ -343,6 +344,7 @@ export default function Story() {
             <button
               onClick={prevPage}
               disabled={currentPage === 0}
+              aria-label="Pagina precedente"
               className={`flex items-center gap-3 px-8 py-5 rounded-full text-xl font-bold transition-all ${
                 currentPage === 0
                   ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -370,6 +372,7 @@ export default function Story() {
                     <button
                       key={idx}
                       onClick={() => goToPage(pageIdx)}
+                      aria-label={`Vai a pagina ${pageIdx}`}
                       className={`w-4 h-4 rounded-full transition-all ${
                         isActive
                           ? 'bg-amber-500 w-8 shadow-lg'
@@ -384,6 +387,7 @@ export default function Story() {
             <button
               onClick={nextPage}
               disabled={currentPage >= totalPages - 1}
+              aria-label="Pagina successiva"
               className={`flex items-center gap-3 px-8 py-5 rounded-full text-xl font-bold transition-all ${
                 currentPage >= totalPages - 1
                   ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -406,7 +410,7 @@ export default function Story() {
               Fine della Storia!
             </h2>
             <p className="text-2xl md:text-3xl mb-10 opacity-90">
-              Ti e piaciuta questa avventura?
+              Ti è piaciuta questa avventura?
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
@@ -434,6 +438,7 @@ export default function Story() {
           <button
             onClick={prevPage}
             disabled={currentPage === 0}
+            aria-label="Pagina precedente"
             className="fixed left-6 top-1/2 -translate-y-1/2 w-16 h-16 bg-white/95 backdrop-blur rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all z-40 hidden lg:flex disabled:opacity-50"
           >
             <ChevronLeft className="w-10 h-10 text-amber-600" />
@@ -441,6 +446,7 @@ export default function Story() {
           <button
             onClick={nextPage}
             disabled={currentPage >= totalPages - 1}
+            aria-label="Pagina successiva"
             className="fixed right-6 top-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all z-40 hidden lg:flex disabled:opacity-50"
           >
             <ChevronRight className="w-10 h-10 text-white" />

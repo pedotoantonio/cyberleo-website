@@ -23,7 +23,7 @@ export default function Home() {
     {
       icon: BookOpen,
       title: 'Storie Divertenti',
-      description: 'Avventure emozionanti nella Citta Digitale con CyberLeo e i suoi amici!',
+      description: 'Avventure emozionanti nella Città Digitale con CyberLeo e i suoi amici!',
       color: 'from-cyberleo-gold to-cyberleo-orange',
       link: '/storie',
       image: '/images/heroes/cookie-privacy.jpg'
@@ -196,7 +196,7 @@ export default function Home() {
                     {feature.description}
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-cyberleo-orange font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                    Scopri di piu <ChevronRight className="w-4 h-4" />
+                    Scopri di più <ChevronRight className="w-4 h-4" />
                   </div>
                 </div>
               </Link>
@@ -213,7 +213,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-bold font-display text-gray-800">
                 Ultime Storie
               </h2>
-              <p className="text-gray-600 mt-2">Le avventure piu recenti di CyberLeo</p>
+              <p className="text-gray-600 mt-2">Le avventure più recenti di CyberLeo</p>
             </div>
             <Link to="/storie" className="flex items-center gap-2 bg-cyberleo-gold/10 text-cyberleo-orange font-semibold px-6 py-3 rounded-full hover:bg-cyberleo-gold/20 transition-colors">
               Vedi tutte <ChevronRight className="w-5 h-5" />
@@ -292,7 +292,7 @@ export default function Home() {
               I Protagonisti
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Incontra gli eroi che proteggono la Citta Digitale!
+              Incontra gli eroi che proteggono la Città Digitale!
             </p>
           </div>
 

@@ -51,7 +51,7 @@ export default function CookieBanner() {
 
           <div className="text-center text-sm text-gray-500">
             <Link to="/privacy" className="text-cyberleo-orange hover:underline">
-              Leggi di piu con mamma e papa
+              Leggi di più con mamma e papà
             </Link>
           </div>
         </div>

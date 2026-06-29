@@ -63,6 +63,8 @@ export default function Layout() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-xl bg-white/20 text-white"
+              aria-label={mobileMenuOpen ? 'Chiudi menu' : 'Apri menu'}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

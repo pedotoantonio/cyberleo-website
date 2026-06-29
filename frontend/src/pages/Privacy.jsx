@@ -3,7 +3,7 @@ import { ArrowLeft, Shield, Cookie, Lock, Mail, Heart } from 'lucide-react';
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-cyberleo-light to-white">
+    <div className="min-h-screen bg-gradient-to-b from-cyberleo-warm to-white">
       {/* Header */}
       <div className="bg-gradient-to-r from-cyberleo-gold to-cyberleo-orange text-white py-8">
         <div className="container mx-auto px-4">
@@ -104,7 +104,7 @@ export default function Privacy() {
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Protezione dei minori</h3>
               <p>
-                Questo sito e progettato per essere fruito dai bambini con la supervisione dei genitori.
+                Questo sito è progettato per essere fruito dai bambini con la supervisione dei genitori.
                 Non raccogliamo consapevolmente informazioni personali da minori di 16 anni.
                 Se siete genitori e ritenete che vostro figlio ci abbia fornito informazioni personali,
                 contattateci per la rimozione immediata.
@@ -121,7 +121,7 @@ export default function Privacy() {
                 <li>Rettifica dei dati inesatti</li>
                 <li>Cancellazione dei dati</li>
                 <li>Limitazione del trattamento</li>
-                <li>Portabilita dei dati</li>
+                <li>Portabilità dei dati</li>
                 <li>Opposizione al trattamento</li>
                 <li>Reclamo al Garante per la Protezione dei Dati Personali</li>
               </ul>
