@@ -18,12 +18,12 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
-  background: linear-gradient(180deg, #FFF8E7 0%, #FFE4B5 100%);
+  background: linear-gradient(180deg, #FFFDF8 0%, #FFF8E7 100%);
   min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Fredoka', 'Nunito', sans-serif;
 }
 
 /* CyberLeo button styles */
@@ -107,6 +107,16 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.05);
 }
 
+/* Criniera di fibre ottiche del logo */
+.cyberleo-mane path {
+  animation: mane-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes mane-glow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
 /* Fiber optic effect */
 .fiber-glow {
   background: linear-gradient(90deg,
@@ -153,5 +163,18 @@ h1, h2, h3, h4, h5, h6 {
 
   .story-card:active, .character-card:active {
     transform: scale(0.98);
+  }
+}
+
+/* Rispetta la preferenza di sistema per ridurre le animazioni
+   (utile per chi soffre di disturbi vestibolari) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -23,7 +23,7 @@ export default function Home() {
     {
       icon: BookOpen,
       title: 'Storie Divertenti',
-      description: 'Avventure emozionanti nella Citta Digitale con CyberLeo e i suoi amici!',
+      description: 'Avventure emozionanti nella Città Digitale con CyberLeo e i suoi amici!',
       color: 'from-cyberleo-gold to-cyberleo-orange',
       link: '/storie',
       image: '/images/heroes/cookie-privacy.jpg'
@@ -40,7 +40,7 @@ export default function Home() {
       icon: Shield,
       title: 'Impara Giocando',
       description: 'Scopri come navigare in sicurezza e proteggere i tuoi dati!',
-      color: 'from-green-400 to-emerald-500',
+      color: 'from-cyberleo-green to-emerald-500',
       link: '/storie',
       image: '/images/heroes/firewall-fred.jpg'
     },
@@ -48,7 +48,7 @@ export default function Home() {
       icon: Play,
       title: 'Video Animati',
       description: 'Guarda i video delle avventure di CyberLeo!',
-      color: 'from-purple-400 to-pink-500',
+      color: 'from-cyberleo-purple to-cyberleo-pink',
       link: '/video',
       image: '/images/heroes/identita-digitale.jpg'
     }
@@ -82,24 +82,23 @@ export default function Home() {
             alt="CyberLeo Hero"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-cyberleo-warm via-transparent to-transparent" />
+          {/* Overlay brand-tinted per leggibilità (al posto del nero puro) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyberleo-dark/85 via-cyberleo-dark/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-cyberleo-warm via-transparent to-cyberleo-blue/15" />
         </div>
 
-        {/* Animated particles */}
-        <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 bg-cyberleo-gold/60 rounded-full animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
-              }}
-            />
-          ))}
+        {/* Motivo a fibre ottiche (firma del brand) */}
+        <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none h-2/3">
+          <svg className="w-full h-full" viewBox="0 0 1440 480" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" strokeWidth="3" strokeLinecap="round" className="cyberleo-mane">
+              <path d="M120 480 C 160 320 60 240 180 90" stroke="#FFB800" opacity="0.55" style={{ animationDelay: '0s' }} />
+              <path d="M340 480 C 300 340 420 260 320 120" stroke="#00D4FF" opacity="0.5" style={{ animationDelay: '0.3s' }} />
+              <path d="M560 480 C 600 320 520 220 640 110" stroke="#0099FF" opacity="0.5" style={{ animationDelay: '0.6s' }} />
+              <path d="M820 480 C 780 330 900 250 800 130" stroke="#FF6B35" opacity="0.5" style={{ animationDelay: '0.9s' }} />
+              <path d="M1080 480 C 1120 320 1020 230 1160 100" stroke="#7C5CFF" opacity="0.45" style={{ animationDelay: '1.2s' }} />
+              <path d="M1300 480 C 1260 340 1360 260 1280 140" stroke="#00D4FF" opacity="0.45" style={{ animationDelay: '1.5s' }} />
+            </g>
+          </svg>
         </div>
 
         <div className="container mx-auto px-4 relative z-20">
@@ -196,7 +195,7 @@ export default function Home() {
                     {feature.description}
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-cyberleo-orange font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                    Scopri di piu <ChevronRight className="w-4 h-4" />
+                    Scopri di più <ChevronRight className="w-4 h-4" />
                   </div>
                 </div>
               </Link>
@@ -213,7 +212,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-bold font-display text-gray-800">
                 Ultime Storie
               </h2>
-              <p className="text-gray-600 mt-2">Le avventure piu recenti di CyberLeo</p>
+              <p className="text-gray-600 mt-2">Le avventure più recenti di CyberLeo</p>
             </div>
             <Link to="/storie" className="flex items-center gap-2 bg-cyberleo-gold/10 text-cyberleo-orange font-semibold px-6 py-3 rounded-full hover:bg-cyberleo-gold/20 transition-colors">
               Vedi tutte <ChevronRight className="w-5 h-5" />
@@ -292,28 +291,34 @@ export default function Home() {
               I Protagonisti
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Incontra gli eroi che proteggono la Citta Digitale!
+              Incontra gli eroi che proteggono la Città Digitale!
             </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             {[
-              { emoji: '🦁', name: 'CyberLeo', color: 'bg-cyberleo-gold' },
-              { emoji: '🐞', name: 'Bitty', color: 'bg-red-500' },
-              { emoji: '🐻', name: 'Firewall Fred', color: 'bg-blue-600' },
-              { emoji: '🧚', name: 'Password Penny', color: 'bg-pink-500' },
-              { emoji: '☁️', name: 'Cloud Clara', color: 'bg-sky-400' },
-              { emoji: '🦇', name: 'Spammy', color: 'bg-purple-600' },
+              { img: '/images/avatars/cyberleo.png', name: 'CyberLeo', ring: 'ring-cyberleo-gold' },
+              { img: '/images/avatars/bitty.png', name: 'Bitty', ring: 'ring-red-400' },
+              { img: '/images/avatars/firewall_fred.png', name: 'Firewall Fred', ring: 'ring-blue-500' },
+              { img: '/images/avatars/password_penny.png', name: 'Password Penny', ring: 'ring-pink-400' },
+              { img: '/images/avatars/cloud_clara.png', name: 'Cloud Clara', ring: 'ring-sky-300' },
+              { img: '/images/avatars/spammy.png', name: 'Spammy', ring: 'ring-purple-400' },
             ].map((char, i) => (
-              <div
+              <Link
+                to="/personaggi"
                 key={i}
                 className="group flex flex-col items-center"
               >
-                <div className={`w-20 h-20 ${char.color} rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform cursor-pointer`}>
-                  <span className="text-4xl">{char.emoji}</span>
+                <div className={`w-24 h-24 rounded-full bg-white shadow-xl ring-4 ${char.ring} overflow-hidden group-hover:scale-110 transition-transform`}>
+                  <img
+                    src={char.img}
+                    alt={char.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <span className="mt-2 text-white font-semibold text-sm">{char.name}</span>
-              </div>
+              </Link>
             ))}
           </div>
 

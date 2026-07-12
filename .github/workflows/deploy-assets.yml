@@ -1,0 +1,74 @@
+name: Deploy asset statici sul VPS
+
+# Carica il contenuto di deploy-assets/ nella root del sito su cyberleo.it
+# via SSH/rsync. Gira sui runner GitHub (non nella sandbox di Claude), quindi
+# l'accesso SSH al VPS funziona.
+#
+# Richiede questi Secrets nel repo (Settings > Secrets and variables > Actions):
+#   SSH_HOST   host o IP del VPS (es. cyberleo.it)
+#   SSH_USER   utente SSH (es. deploy)
+#   SSH_KEY    chiave privata SSH (contenuto completo, multilinea)
+#   SITE_ROOT  path della root del sito sul VPS (es. /var/www/cyberleo)
+#   SSH_PORT   opzionale, default 22
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+      - 'claude/**'
+    paths:
+      - 'deploy-assets/**'
+      - '.github/workflows/deploy-assets.yml'
+
+concurrency:
+  group: deploy-assets
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verifica secrets
+        id: precheck
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SITE_ROOT: ${{ secrets.SITE_ROOT }}
+        run: |
+          if [ -z "$SSH_HOST" ] || [ -z "$SSH_USER" ] || [ -z "$SSH_KEY" ] || [ -z "$SITE_ROOT" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Secrets non configurati (SSH_HOST/SSH_USER/SSH_KEY/SITE_ROOT). Deploy saltato."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Configura chiave SSH
+        if: steps.precheck.outputs.configured == 'true'
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "${SSH_PORT:-22}" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Rsync asset sul VPS
+        if: steps.precheck.outputs.configured == 'true'
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SITE_ROOT: ${{ secrets.SITE_ROOT }}
+        run: |
+          rsync -avz --no-perms --no-owner --no-group \
+            -e "ssh -i ~/.ssh/id_deploy -p ${SSH_PORT:-22} -o StrictHostKeyChecking=accept-new" \
+            deploy-assets/ \
+            "$SSH_USER@$SSH_HOST:$SITE_ROOT/"
+          echo "Deploy completato: asset copiati in $SITE_ROOT/"

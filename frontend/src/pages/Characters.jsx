@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Users, Sparkles, X, Shield, Star, Heart } from 'lucide-react';
 
 // Immagini dei personaggi - generate con AI per consistenza visiva
@@ -42,6 +43,16 @@ export default function Characters() {
         setLoading(false);
       });
   }, []);
+
+  // Chiudi la modale con il tasto Esc
+  useEffect(() => {
+    if (!selectedCharacter) return;
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setSelectedCharacter(null);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [selectedCharacter]);
 
   const getCharacterImage = (name) => {
     return characterImages[name] || '/images/heroes/cyberleo-hero.jpg';
@@ -93,7 +104,7 @@ export default function Characters() {
           </h1>
 
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl drop-shadow-md">
-            Scopri tutti gli amici che aiutano CyberLeo a proteggere la Citta Digitale!
+            Scopri tutti gli amici che aiutano CyberLeo a proteggere la Città Digitale!
           </p>
         </div>
 
@@ -112,7 +123,7 @@ export default function Characters() {
       <div className="container mx-auto px-4 py-12">
         {/* Intro Section */}
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="grid grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
             <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-cyberleo-gold/20">
               <Shield className="w-10 h-10 text-cyberleo-blue mx-auto mb-3" />
               <h3 className="font-bold text-gray-800">Protezione</h3>
@@ -126,7 +137,7 @@ export default function Characters() {
             <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-cyberleo-gold/20">
               <Heart className="w-10 h-10 text-red-500 mx-auto mb-3" />
               <h3 className="font-bold text-gray-800">Amicizia</h3>
-              <p className="text-sm text-gray-600">Insieme sono piu forti</p>
+              <p className="text-sm text-gray-600">Insieme sono più forti</p>
             </div>
           </div>
         </div>
@@ -154,7 +165,7 @@ export default function Characters() {
                       alt={character.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(character.name)} opacity-40`} />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(character.name)} opacity-20`} />
 
                     {/* Emoji badge */}
                     <div
@@ -199,7 +210,7 @@ export default function Characters() {
                     {/* CTA */}
                     <div className="mt-4 flex items-center justify-center gap-2 text-cyberleo-blue font-bold group-hover:text-cyberleo-orange transition-colors">
                       <Sparkles className="w-5 h-5" />
-                      <span>Scopri di piu</span>
+                      <span>Scopri di più</span>
                     </div>
                   </div>
                 </div>
@@ -223,13 +234,13 @@ export default function Characters() {
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Leggi tutte le storie di CyberLeo e dei suoi amici nella sezione Storie!
             </p>
-            <a
-              href="/storie"
+            <Link
+              to="/storie"
               className="inline-flex items-center gap-3 bg-white text-cyberleo-blue px-8 py-4 rounded-full font-bold text-lg hover:bg-cyberleo-gold hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <Sparkles className="w-6 h-6" />
               Leggi le Storie
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -241,6 +252,9 @@ export default function Characters() {
           onClick={() => setSelectedCharacter(null)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={selectedCharacter.name}
             className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform transition-all"
             onClick={(e) => e.stopPropagation()}
           >
@@ -251,11 +265,12 @@ export default function Characters() {
                 alt={selectedCharacter.name}
                 className="w-full h-full object-cover"
               />
-              <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(selectedCharacter.name)} opacity-50`} />
+              <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(selectedCharacter.name)} opacity-30`} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
               <button
                 onClick={() => setSelectedCharacter(null)}
+                aria-label="Chiudi"
                 className="absolute top-4 right-4 p-3 rounded-full bg-white/90 hover:bg-white transition-colors shadow-lg"
               >
                 <X className="w-6 h-6 text-gray-600" />
@@ -297,7 +312,7 @@ export default function Characters() {
               <div className="mb-6">
                 <h3 className="font-bold font-display text-gray-800 mb-3 flex items-center gap-2">
                   <Heart className="w-5 h-5 text-red-500" />
-                  Personalita
+                  Personalità
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   {selectedCharacter.personality}
@@ -307,7 +322,7 @@ export default function Characters() {
               <div className="mb-6">
                 <h3 className="font-bold font-display text-gray-800 mb-3 flex items-center gap-2">
                   <Shield className="w-5 h-5 text-cyberleo-blue" />
-                  Le mie abilita
+                  Le mie abilità
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedCharacter.skills?.map((skill, index) => (

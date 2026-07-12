@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Home, Star, Sparkles, ChevronLeft, ChevronRight 
 import useVoiceReader from '../hooks/useVoiceReader';
 import AudioPlayer from '../components/AudioPlayer';
 import KaraokeText from '../components/KaraokeText';
+import Logo from '../components/Logo';
 
 // Emoji decorative per le pagine
 const pageDecorations = ['🌟', '✨', '💫', '⭐', '🎀', '🎈', '🌈', '🦋', '🌸', '🍀'];
@@ -153,7 +154,7 @@ export default function Story() {
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-amber-100 to-orange-100">
-        <div className="text-8xl mb-6 animate-bounce">🦁</div>
+        <Logo className="w-28 h-28 mb-6 animate-bounce" />
         <div className="w-20 h-20 border-4 border-cyberleo-gold border-t-transparent rounded-full animate-spin" />
         <p className="mt-6 text-2xl font-bold text-amber-800 animate-pulse">
           Preparando la storia...
@@ -203,13 +204,14 @@ export default function Story() {
             </Link>
 
             <div className="flex items-center gap-2">
-              <span className="text-3xl">🦁</span>
+              <Logo className="w-9 h-9" />
               <span className="font-bold text-xl text-gray-800 hidden md:inline">CyberLeo</span>
             </div>
 
             <button
               onClick={() => setFontSize(f => f === 'medium' ? 'large' : f === 'large' ? 'xlarge' : 'medium')}
               className="p-3 bg-blue-100 hover:bg-blue-200 rounded-full transition-colors"
+              aria-label="Cambia dimensione del testo"
             >
               <span className="text-lg font-bold text-blue-700">
                 {fontSize === 'medium' ? 'A' : fontSize === 'large' ? 'A+' : 'A++'}
@@ -343,6 +345,7 @@ export default function Story() {
             <button
               onClick={prevPage}
               disabled={currentPage === 0}
+              aria-label="Pagina precedente"
               className={`flex items-center gap-3 px-8 py-5 rounded-full text-xl font-bold transition-all ${
                 currentPage === 0
                   ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -370,6 +373,7 @@ export default function Story() {
                     <button
                       key={idx}
                       onClick={() => goToPage(pageIdx)}
+                      aria-label={`Vai a pagina ${pageIdx}`}
                       className={`w-4 h-4 rounded-full transition-all ${
                         isActive
                           ? 'bg-amber-500 w-8 shadow-lg'
@@ -384,6 +388,7 @@ export default function Story() {
             <button
               onClick={nextPage}
               disabled={currentPage >= totalPages - 1}
+              aria-label="Pagina successiva"
               className={`flex items-center gap-3 px-8 py-5 rounded-full text-xl font-bold transition-all ${
                 currentPage >= totalPages - 1
                   ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -401,12 +406,12 @@ export default function Story() {
       {currentPage === totalPages - 1 && totalPages > 1 && (
         <div className="container mx-auto px-4 py-10">
           <div className="bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 rounded-3xl p-10 md:p-14 text-center text-white max-w-4xl mx-auto shadow-2xl">
-            <span className="text-[100px] block mb-6">🦁</span>
+            <Logo className="w-28 h-28 mx-auto mb-6" />
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Fine della Storia!
             </h2>
             <p className="text-2xl md:text-3xl mb-10 opacity-90">
-              Ti e piaciuta questa avventura?
+              Ti è piaciuta questa avventura?
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
@@ -434,6 +439,7 @@ export default function Story() {
           <button
             onClick={prevPage}
             disabled={currentPage === 0}
+            aria-label="Pagina precedente"
             className="fixed left-6 top-1/2 -translate-y-1/2 w-16 h-16 bg-white/95 backdrop-blur rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all z-40 hidden lg:flex disabled:opacity-50"
           >
             <ChevronLeft className="w-10 h-10 text-amber-600" />
@@ -441,6 +447,7 @@ export default function Story() {
           <button
             onClick={nextPage}
             disabled={currentPage >= totalPages - 1}
+            aria-label="Pagina successiva"
             className="fixed right-6 top-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all z-40 hidden lg:flex disabled:opacity-50"
           >
             <ChevronRight className="w-10 h-10 text-white" />

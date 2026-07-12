@@ -1,4 +1,5 @@
 import { Shield, BookOpen, Users, Mail, ExternalLink, Check } from 'lucide-react';
+import Logo from '../components/Logo';
 
 export default function Parents() {
   const safetyTopics = [
@@ -64,8 +65,8 @@ export default function Parents() {
                 </p>
               </div>
               <div className="flex justify-center">
-                <div className="w-64 h-64 bg-gradient-to-br from-cyberleo-gold to-cyberleo-orange rounded-full flex items-center justify-center shadow-2xl">
-                  <span className="text-[140px]">🦁</span>
+                <div className="w-64 h-64 bg-gradient-to-br from-cyberleo-warm to-cyberleo-gold/40 rounded-full flex items-center justify-center shadow-2xl p-8">
+                  <Logo className="w-44 h-44" />
                 </div>
               </div>
             </div>

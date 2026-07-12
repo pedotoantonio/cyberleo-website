@@ -13,11 +13,15 @@ export default {
           orange: '#FF6B35',
           cyan: '#00D4FF',
           warm: '#FFF8E7',
-          dark: '#2D2D2D'
+          dark: '#2D2D2D',
+          // Accent brandizzati (sostituiscono i colori Tailwind casuali)
+          purple: '#7C5CFF',
+          green: '#22C55E',
+          pink: '#FF5FA2'
         }
       },
       fontFamily: {
-        'display': ['Nunito', 'sans-serif'],
+        'display': ['Fredoka', 'Nunito', 'sans-serif'],
         'body': ['Quicksand', 'sans-serif']
       },
       borderRadius: {

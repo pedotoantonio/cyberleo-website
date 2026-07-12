@@ -44,7 +44,7 @@ export default function Stories() {
             Le Storie di CyberLeo
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Scopri tutte le avventure di CyberLeo e i suoi amici nella Citta Digitale!
+            Scopri tutte le avventure di CyberLeo e i suoi amici nella Città Digitale!
           </p>
         </div>
 
@@ -100,6 +100,7 @@ export default function Stories() {
                 <button
                   onClick={() => setPage(p => Math.max(1, p - 1))}
                   disabled={page === 1}
+                  aria-label="Pagina precedente"
                   className="p-3 rounded-xl bg-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
                 >
                   <ChevronLeft className="w-6 h-6 text-cyberleo-orange" />
@@ -110,6 +111,7 @@ export default function Stories() {
                 <button
                   onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
+                  aria-label="Pagina successiva"
                   className="p-3 rounded-xl bg-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
                 >
                   <ChevronRight className="w-6 h-6 text-cyberleo-orange" />

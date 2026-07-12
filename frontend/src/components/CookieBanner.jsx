@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useCookieConsent } from '../hooks/useCookieConsent';
 import { Cookie, Shield, X } from 'lucide-react';
+import Logo from './Logo';
 
 export default function CookieBanner() {
   const { showBanner, acceptAll, acceptEssential } = useCookieConsent();
@@ -14,7 +15,7 @@ export default function CookieBanner() {
         {/* Header con CyberLeo */}
         <div className="bg-gradient-to-r from-cyberleo-gold to-cyberleo-orange p-4 text-white">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">🦁</span>
+            <Logo className="w-12 h-12 shrink-0" />
             <div>
               <h2 className="text-xl font-bold font-display">Ciao amico!</h2>
               <p className="text-sm text-white/90">CyberLeo ha qualcosa da dirti</p>
@@ -51,7 +52,7 @@ export default function CookieBanner() {
 
           <div className="text-center text-sm text-gray-500">
             <Link to="/privacy" className="text-cyberleo-orange hover:underline">
-              Leggi di piu con mamma e papa
+              Leggi di più con mamma e papà
             </Link>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Play, Clock, ExternalLink, X } from 'lucide-react';
 
 export default function Videos() {
@@ -13,6 +14,16 @@ export default function Videos() {
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
+
+  // Chiudi la modale con il tasto Esc
+  useEffect(() => {
+    if (!selectedVideo) return;
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setSelectedVideo(null);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [selectedVideo]);
 
   useEffect(() => {
     fetch('/api/videos')
@@ -119,9 +130,9 @@ export default function Videos() {
             <p className="text-xl text-gray-600 max-w-md mx-auto mb-8">
               CyberLeo sta preparando nuovi video per te. Nel frattempo, leggi le sue storie!
             </p>
-            <a href="/storie" className="btn-cyberleo inline-flex items-center gap-2">
+            <Link to="/storie" className="btn-cyberleo inline-flex items-center gap-2">
               Leggi le Storie
-            </a>
+            </Link>
           </div>
         )}
 
@@ -132,12 +143,16 @@ export default function Videos() {
             onClick={() => setSelectedVideo(null)}
           >
             <div
-              className="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl"
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedVideo.title}
+              className="relative bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}
               <button
                 onClick={() => setSelectedVideo(null)}
+                aria-label="Chiudi"
                 className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
               >
                 <X className="w-6 h-6" />
