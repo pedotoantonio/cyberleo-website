@@ -9,7 +9,9 @@ Landing page statica del gestionale per associazioni ASSOVITA.it.
 
 ## Pubblicazione
 
-La cartella può essere servita così com'è da qualunque web server statico (nginx, Apache, GitHub Pages, Netlify).
+Il workflow `.github/workflows/assovita-pages.yml` pubblica questa cartella su GitHub Pages a ogni push
+(indirizzo: https://pedotoantonio.github.io/cyberleo-website/). La cartella può comunque essere servita così com'è
+da qualunque web server statico (nginx, Apache, Netlify) o dal dominio assovita.it.
 
 Il modulo di registrazione invia una `POST` JSON all'endpoint definito dalla costante `REGISTER_ENDPOINT`
 all'inizio dello script in `index.html` (valore predefinito `/api/register`). Campi inviati:

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="ASSOVITA.it è il gestionale online per associazioni: soci, tessere, quote, ricevute, corsi e rendiconto in un unico posto.">
+<meta name="description" content="ASSOVITA.it è il gestionale online per associazioni: soci, tessere, quote, ricevute, corsi, rendiconto e un'app dedicata per ogni associazione.">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>ASSOVITA.it</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap">
@@ -446,6 +446,61 @@
   }
   .example b { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--orange-text); }
 
+  /* App dedicata */
+  .app-band { background: linear-gradient(180deg, var(--teal-soft) 0%, var(--bg) 100%); border-block: 1px solid var(--border); }
+  .app-grid { display: grid; gap: 36px; align-items: center; }
+  @media (min-width: 960px) { .app-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 56px; } }
+  .app-copy { display: grid; gap: 18px; min-width: 0; }
+  .app-copy .tag-exclusive { justify-self: start; background: var(--orange); color: #FFFFFF; border: 0; }
+  .app-copy h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); }
+  .app-copy .lead { font-size: 1.1rem; color: var(--muted); }
+  .app-points { list-style: none; display: grid; gap: 12px; }
+  .app-points li { display: flex; gap: 12px; align-items: flex-start; }
+  .app-points li svg { width: 22px; height: 22px; flex: none; color: var(--teal-text); margin-top: 2px; }
+  .app-points li strong { color: var(--fg); }
+  .app-points li span { color: var(--muted); }
+  .app-visual { display: grid; justify-items: center; min-width: 0; }
+  .phone {
+    width: min(300px, 100%); aspect-ratio: 9 / 18.5; max-width: 100%;
+    border-radius: 36px; padding: 10px;
+    background: var(--navy); box-shadow: 0 24px 60px rgb(16 40 60 / .28);
+    display: grid;
+  }
+  .phone-screen {
+    border-radius: 28px; background: var(--surface); overflow: hidden;
+    display: grid; grid-template-rows: auto 1fr auto; min-height: 0;
+    font-family: var(--font-body);
+  }
+  .phone-top { padding: 22px 16px 12px; display: grid; gap: 10px; background: var(--grad); color: #FFFFFF; }
+  .phone-top .org { display: flex; align-items: center; gap: 10px; }
+  .phone-top .org i { width: 34px; height: 34px; border-radius: 9px; background: #FFFFFF; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; color: var(--teal); font-style: normal; }
+  .phone-top .org b { font-family: var(--font-display); font-size: 1rem; line-height: 1.15; }
+  .phone-top .org small { display: block; font-size: 0.72rem; opacity: .9; font-weight: 600; }
+  .card-tessera { border-radius: 12px; padding: 10px 12px; background: rgb(255 255 255 / .16); border: 1px solid rgb(255 255 255 / .35); display: grid; gap: 2px; }
+  .card-tessera span { font-size: 0.68rem; text-transform: uppercase; letter-spacing: .06em; opacity: .9; }
+  .card-tessera b { font-family: var(--font-display); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+  .card-tessera em { font-style: normal; font-size: 0.78rem; }
+  .phone-body { padding: 12px 14px; display: grid; gap: 10px; align-content: start; min-height: 0; }
+  .phone-body h5 { font-family: var(--font-display); font-size: 0.82rem; color: var(--muted); font-weight: 700; }
+  .prow { display: flex; gap: 10px; align-items: center; padding: 9px 10px; border-radius: 10px; background: var(--surface-2); font-size: 0.8rem; color: var(--fg); min-width: 0; }
+  .prow i { width: 30px; height: 30px; border-radius: 8px; flex: none; display: grid; place-items: center; background: var(--teal-soft); color: var(--teal-text); font-style: normal; }
+  .prow i svg { width: 16px; height: 16px; }
+  .prow.pay i { background: var(--orange-soft); color: var(--orange-text); }
+  .prow .t { display: grid; gap: 1px; min-width: 0; }
+  .prow .t small { color: var(--muted); font-size: 0.7rem; }
+  .prow .pill { margin-left: auto; flex: none; font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: var(--orange); color: #FFFFFF; }
+  .phone-nav { display: flex; justify-content: space-around; padding: 10px 8px 14px; border-top: 1px solid var(--border); font-size: 0.62rem; color: var(--muted); font-weight: 600; }
+  .phone-nav span { display: grid; justify-items: center; gap: 3px; }
+  .phone-nav span::before { content: ""; width: 18px; height: 18px; border-radius: 6px; background: var(--border); }
+  .phone-nav span.on { color: var(--teal-text); }
+  .phone-nav span.on::before { background: var(--teal); }
+  .phone-caption { margin-top: 14px; font-size: 0.85rem; color: var(--muted); text-align: center; max-width: 34ch; }
+  .feature.feature-app { grid-column: 1 / -1; border: 2px solid var(--orange); background: linear-gradient(135deg, var(--orange-soft), var(--surface)); }
+  @media (min-width: 640px) { .feature.feature-app { grid-template-columns: auto 1fr; column-gap: 18px; } .feature.feature-app .ico { grid-row: span 3; } }
+  .feature.feature-app .ico { background: var(--orange); color: #FFFFFF; }
+  .feature.feature-app h3 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .feature.feature-app .tag { font-size: 0.7rem; }
+
   /* Come funziona */
   .steps { display: grid; gap: 18px; counter-reset: step; }
   @media (min-width: 768px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -681,6 +736,7 @@
     <nav class="site-nav" id="site-nav" aria-label="Sezioni della pagina">
       <ul>
         <li><a href="#funzionalita">Funzionalità</a></li>
+        <li><a href="#app">App</a></li>
         <li><a href="#come-funziona">Come funziona</a></li>
         <li><a href="#ruoli">Ruoli</a></li>
         <li><a href="#prezzi">Prezzi</a></li>
@@ -707,6 +763,7 @@
           <ul class="hero-notes" aria-label="In breve">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Piano Gratuito fino a 50 soci</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nessuna installazione</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>App dedicata per i tuoi soci</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dati custoditi in Europa</li>
           </ul>
         </div>
@@ -814,6 +871,12 @@
         <p>Niente moduli da attivare o configurare: ogni funzione è pensata attorno a un compito reale della vita associativa.</p>
       </div>
       <div class="features">
+        <article class="feature feature-app">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span>
+          <h3>App della tua associazione <span class="tag tag-teal">Pochi gestionali ce l'hanno</span></h3>
+          <p>Ogni associazione registrata ottiene la propria app per i soci, con il suo nome e il suo logo, collegata in tempo reale alla gestione. Tessera digitale, calendario, pagamento della quota e avvisi: tutto quello che il socio fa nell'app arriva in segreteria senza doppi inserimenti. <a href="#app">Scopri l'app</a>.</p>
+          <div class="example"><b>Esempio</b><span>Lucia Bianchi paga la quota di novembre dall'app «Polisportiva Esempio»: il pagamento compare subito nel gestionale, la ricevuta n. 2026/0148 parte da sola e la sua tessera resta valida.</span></div>
+        </article>
         <article class="feature">
           <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
           <h3>Anagrafica soci</h3>
@@ -868,6 +931,47 @@
           <p>Un solo accesso per chi segue più enti: passi da un'associazione all'altra senza cambiare utente, con dati e numerazioni sempre separati.</p>
           <div class="example"><b>Esempio</b><span>Chi fa il segretario della Polisportiva e della Pro Loco entra una volta sola e sceglie l'ente dal menu in alto.</span></div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP DEDICATA -->
+  <section class="band app-band" id="app" aria-labelledby="app-title">
+    <div class="wrap">
+      <div class="app-grid">
+        <div class="app-copy">
+          <span class="tag tag-exclusive">La differenza di ASSOVITA.it</span>
+          <span class="eyebrow">Un'app per ogni associazione</span>
+          <h2 id="app-title">La tua associazione ha la sua app. Con il suo nome, il suo logo, i suoi soci.</h2>
+          <p class="lead">Gli altri gestionali si fermano alla segreteria. ASSOVITA.it consegna a ogni associazione registrata un'app per i soci, collegata alla gestione: quello che succede nell'app è già registrato in segreteria, e viceversa.</p>
+          <ul class="app-points">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Tessera digitale sempre in tasca.</strong> <span>Numero, stagione e validità aggiornati in automatico al rinnovo; l'istruttore la verifica con un'occhiata.</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Quote pagate dall'app.</strong> <span>Il socio vede cosa deve, paga e riceve la ricevuta; il tesoriere trova l'incasso già registrato.</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Calendario e presenze.</strong> <span>Lezioni, prove e assemblee con orario e luogo; avviso immediato se una lezione salta o cambia sala.</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Avvisi mirati.</strong> <span>Notifiche solo a chi riguarda: un corso, una squadra, i morosi, i genitori dei minori.</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Nessun lavoro in più per la segreteria.</strong> <span>L'app nasce dai dati che hai già inserito: non c'è nulla da configurare o da ricopiare.</span></div></li>
+          </ul>
+          <div class="example"><b>Esempio</b><span>L'A.S.D. Polisportiva Esempio si registra lunedì; martedì i 184 soci ricevono il link alla loro app «Polisportiva Esempio», aprono la tessera digitale e 12 di loro pagano il rinnovo prima della scadenza.</span></div>
+          <div class="hero-actions"><a class="btn btn-primary" href="#registrati">Registra l'associazione e attiva l'app</a></div>
+        </div>
+        <div class="app-visual">
+          <div class="phone" role="img" aria-label="Anteprima dell'app della Polisportiva Esempio: tessera digitale, prossima lezione, quota da pagare e avvisi">
+            <div class="phone-screen">
+              <div class="phone-top">
+                <div class="org"><i>PE</i><div><b>Polisportiva Esempio</b><small>Ciao Lucia</small></div></div>
+                <div class="card-tessera"><span>Tessera socio 2026/27</span><b>n. 0232 · Lucia Bianchi</b><em>Valida fino al 31/08/2027</em></div>
+              </div>
+              <div class="phone-body">
+                <h5>Oggi</h5>
+                <div class="prow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></i><div class="t">Pallavolo Under 14<small>18:00 · Palestra comunale</small></div></div>
+                <div class="prow pay"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></i><div class="t">Quota di novembre<small>35,00 € · scade il 10/11</small></div><span class="pill">Paga</span></div>
+                <div class="prow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></i><div class="t">Prova del coro spostata<small>mercoledì alle 20:30, Sala civica</small></div></div>
+              </div>
+              <div class="phone-nav"><span class="on">Home</span><span>Tessera</span><span>Calendario</span><span>Pagamenti</span></div>
+            </div>
+          </div>
+          <p class="phone-caption">Anteprima con dati di esempio. L'app prende nome, logo e colori dell'associazione.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1033,6 +1137,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Comunicazioni email e WhatsApp con filtri</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Rendiconto, prima nota ed esportazione per il commercialista</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Promemoria automatici per le quote scadute</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>App dedicata</strong> con nome e logo dell'associazione, collegata alla gestione</span></li>
           </ul>
           <a class="btn btn-primary" href="#registrati">Registra l'associazione</a>
         </article>
@@ -1045,6 +1150,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Multi-associazione con un solo accesso</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Ruoli avanzati e permessi personalizzati</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Supporto prioritario e aiuto nell'importazione iniziale</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Un'app per ogni associazione della rete</span></li>
           </ul>
           <a class="btn btn-secondary" href="mailto:info@assovita.it?subject=Piano%20Rete">Chiedi un preventivo</a>
         </article>
@@ -1096,6 +1202,12 @@
           <div class="faq-a" id="faq-6" hidden>
             <p>Solo le persone a cui l'amministratore assegna un ruolo, e ciascuna solo per la parte che le compete: l'istruttore vede i propri iscritti, il tesoriere i pagamenti, il socio la propria scheda. Il personale di ASSOVITA.it accede ai dati solo su vostra richiesta di assistenza, e ogni accesso viene registrato.</p>
           </div>
+        <div class="faq">
+          <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-7">L'app è davvero della mia associazione?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3>
+          <div class="faq-a" id="faq-7" hidden>
+            <p>Sì. Ogni associazione registrata ha la propria app, con il proprio nome, logo e colori, visibile solo ai propri soci. I soci la aprono dal telefono con il link che ricevono via email o WhatsApp e la aggiungono alla schermata iniziale come qualunque app; non serve pubblicarla negli store. I dati che vedono (tessera, quote, calendario) sono gli stessi che la segreteria gestisce in ASSOVITA.it, aggiornati in tempo reale.</p>
+          </div>
+        </div>
         </div>
       </div>
     </div>
