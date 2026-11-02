@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="ASSOVITA.it è il gestionale online per associazioni: soci, tessere, quote, ricevute, corsi e rendiconto in un unico posto.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>ASSOVITA.it</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap">
+<style>
+  :root {
+    /* Palette di marca (estratta dal logo) */
+    --teal: #1088A0;
+    --teal-light: #1AAAB3;
+    --aqua: #46B2B2;
+    --orange: #FD8E56;
+    --orange-warm: #FF994F;
+    --peach: #E59163;
+    --navy: #21608B;
+    --bg: #F4F6F8;
+    --surface: #FFFFFF;
+    --surface-2: #EBF0F4;
+    --fg: #1E2A38;
+    --muted: #55606E;
+    --border: #D7DEE6;
+    /* Derivati per il testo (contrasto AA) */
+    --teal-text: #0C7088;
+    --teal-deep: #0C7088;
+    --orange-text: #A94818;
+    --navy-text: #21608B;
+    --teal-soft: #E2F2F4;
+    --orange-soft: #FFEDE3;
+    --btn-primary-bg: #0C7088;
+    --btn-primary-fg: #FFFFFF;
+    --btn-accent-bg: #FD8E56;
+    --btn-accent-fg: #1E2A38;
+    --ok: #1B6E46;
+    --ok-soft: #E3F5EA;
+    --err: #B42318;
+    --err-soft: #FDECEA;
+    --warn: #8A5A00;
+    --shadow-color: 30 42 56;
+    --ring: #1088A0;
+    --grad: linear-gradient(110deg, var(--teal) 0%, var(--aqua) 45%, var(--orange) 100%);
+    --font-display: "Baloo 2", "Nunito", "Segoe UI Rounded", "Arial Rounded MT Bold", ui-rounded, system-ui, sans-serif;
+    --font-body: "Nunito Sans", "Segoe UI", Roboto, Helvetica, Arial, system-ui, sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --header-h: 68px;
+    color-scheme: light;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px) + 12px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --teal: #2FAFC2;
+      --teal-light: #4FC4CB;
+      --aqua: #62C3C3;
+      --orange: #FF9B66;
+      --orange-warm: #FFA86B;
+      --peach: #F0A57C;
+      --navy: #8EC2EA;
+      --bg: #0F1A26;
+      --surface: #162433;
+      --surface-2: #1E2F42;
+      --fg: #E7EDF3;
+      --muted: #A3B1C0;
+      --border: #2B3D50;
+      --teal-text: #5ED0DA;
+      --teal-deep: #2FAFC2;
+      --orange-text: #FFAB7D;
+      --navy-text: #9CCBEE;
+      --teal-soft: #15323D;
+      --orange-soft: #3A271D;
+      --btn-primary-bg: #2FAFC2;
+      --btn-primary-fg: #0F1A26;
+      --btn-accent-bg: #FF9B66;
+      --btn-accent-fg: #0F1A26;
+      --ok: #6FD39A;
+      --ok-soft: #163626;
+      --err: #FF8A80;
+      --err-soft: #3C1F1D;
+      --warn: #F5C063;
+      --shadow-color: 0 0 0;
+      --ring: #5ED0DA;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --teal: #2FAFC2;
+    --teal-light: #4FC4CB;
+    --aqua: #62C3C3;
+    --orange: #FF9B66;
+    --orange-warm: #FFA86B;
+    --peach: #F0A57C;
+    --navy: #8EC2EA;
+    --bg: #0F1A26;
+    --surface: #162433;
+    --surface-2: #1E2F42;
+    --fg: #E7EDF3;
+    --muted: #A3B1C0;
+    --border: #2B3D50;
+    --teal-text: #5ED0DA;
+    --teal-deep: #2FAFC2;
+    --orange-text: #FFAB7D;
+    --navy-text: #9CCBEE;
+    --teal-soft: #15323D;
+    --orange-soft: #3A271D;
+    --btn-primary-bg: #2FAFC2;
+    --btn-primary-fg: #0F1A26;
+    --btn-accent-bg: #FF9B66;
+    --btn-accent-fg: #0F1A26;
+    --ok: #6FD39A;
+    --ok-soft: #163626;
+    --err: #FF8A80;
+    --err-soft: #3C1F1D;
+    --warn: #F5C063;
+    --shadow-color: 0 0 0;
+    --ring: #5ED0DA;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: var(--surface);
+  }
+
+  img, svg { max-width: 100%; height: auto; display: block; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.12;
+    margin: 0;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-size: clamp(2rem, 1.2rem + 3.4vw, 3.4rem); }
+  h2 { font-size: clamp(1.7rem, 1.2rem + 2vw, 2.5rem); }
+  h3 { font-size: 1.25rem; }
+  p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; }
+  a { color: var(--teal-text); text-underline-offset: 0.15em; }
+  a:hover { color: var(--navy-text); }
+  strong { font-weight: 700; }
+
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+  }
+
+  /* Marchio testuale */
+  .brand { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em; white-space: nowrap; }
+  .brand .asso { color: var(--teal); }
+  .brand .vita { color: var(--orange); }
+  .brand .it { color: var(--navy); font-size: 0.72em; }
+
+  /* Fasce e wrapper */
+  .band { padding-block: clamp(56px, 8vw, 96px); }
+  .band-alt { background: var(--surface); border-block: 1px solid var(--border); }
+  .wrap {
+    max-width: 1160px;
+    margin-inline: auto;
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+    display: grid;
+    gap: 40px;
+    min-width: 0;
+  }
+  .section-head { display: grid; gap: 12px; max-width: 720px; }
+  .section-head p { color: var(--muted); font-size: 1.08rem; }
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal-text);
+  }
+  .eyebrow.accent { color: var(--orange-text); }
+
+  /* Pulsanti */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.02rem;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    transition: transform .15s ease, background-color .15s ease, color .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-fg); box-shadow: 0 8px 20px -10px rgb(var(--shadow-color) / .5); }
+  .btn-primary:hover { color: var(--btn-primary-fg); }
+  .btn-secondary { background: transparent; color: var(--teal-text); border-color: var(--teal-text); }
+  .btn-secondary:hover { background: var(--teal-soft); color: var(--teal-text); }
+  .btn-accent { background: var(--btn-accent-bg); color: var(--btn-accent-fg); }
+  .btn-accent:hover { color: var(--btn-accent-fg); }
+  .btn-light { background: var(--surface); color: var(--teal-text); }
+  .btn-light:hover { color: var(--teal-text); }
+  .btn[disabled] { opacity: .7; cursor: progress; transform: none; }
+  .btn-sm { min-height: 40px; padding: 6px 16px; font-size: 0.95rem; }
+
+  /* Header */
+  .site-header {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: var(--header-h);
+    padding-block: 8px;
+    flex-wrap: wrap;
+  }
+  .logo-link { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }
+  .logo-link img { width: 50px; height: 42px; object-fit: contain; border-radius: 8px; background: #F6F7F9; padding: 2px; }
+  .logo-link .brand { font-size: 1.35rem; }
+  .site-nav { display: none; width: 100%; }
+  .site-nav ul { list-style: none; display: grid; gap: 4px; padding-block: 8px 12px; }
+  .site-nav a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .site-nav a:hover { background: var(--surface-2); color: var(--teal-text); }
+  .site-nav .nav-cta { margin-top: 6px; }
+  .header-actions { display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--fg);
+    cursor: pointer;
+  }
+  .icon-btn:hover { background: var(--surface-2); }
+  .icon-btn svg { width: 22px; height: 22px; }
+  .site-header.nav-open .site-nav { display: block; }
+  .header-cta { display: none; }
+
+  @media (min-width: 960px) {
+    .site-header .wrap { flex-wrap: nowrap; }
+    .site-nav { display: block; width: auto; margin-left: auto; }
+    .header-actions { order: 3; }
+    .site-nav ul { display: flex; align-items: center; gap: 2px; padding-block: 0; }
+    .site-nav .nav-cta { display: none; }
+    .nav-toggle { display: none; }
+    .header-cta { display: inline-flex; }
+  }
+
+  /* Hero */
+  .hero { padding-block: clamp(40px, 7vw, 88px); background: var(--bg); }
+  .hero .wrap { gap: 48px; }
+  .hero-grid { display: grid; gap: 40px; align-items: center; }
+  .hero-copy { display: grid; gap: 20px; min-width: 0; }
+  .hero-copy p.lead { font-size: 1.15rem; color: var(--muted); max-width: 56ch; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-notes { display: flex; flex-wrap: wrap; gap: 8px 18px; list-style: none; color: var(--muted); font-size: 0.95rem; }
+  .hero-notes li { display: inline-flex; align-items: center; gap: 6px; }
+  .hero-notes svg { width: 18px; height: 18px; color: var(--teal-text); flex: none; }
+  @media (min-width: 960px) {
+    .hero-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; }
+  }
+
+  /* Anteprima dashboard */
+  .dash {
+    position: relative;
+    display: grid;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 48px -28px rgb(var(--shadow-color) / .45);
+    min-width: 0;
+  }
+  .dash::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 5px;
+    border-radius: 20px 20px 0 0;
+    background: var(--grad);
+  }
+  .dash-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .dash-title { display: grid; gap: 2px; min-width: 0; }
+  .dash-title strong { font-family: var(--font-display); font-size: 1rem; }
+  .dash-title span { font-size: 0.82rem; color: var(--muted); }
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+  .tag-sample { background: var(--orange-soft); color: var(--orange-text); border: 1px dashed var(--orange-text); }
+  .tag-teal { background: var(--teal-soft); color: var(--teal-text); }
+  .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .stat {
+    display: grid; gap: 2px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--surface-2);
+    min-width: 0;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+  .stat-value { font-family: var(--font-display); font-weight: 800; font-size: 1.65rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .stat-delta { font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .stat-delta.up { color: var(--ok); }
+  .stat-delta.warn { color: var(--orange-text); }
+  .dash-row { display: grid; gap: 10px; }
+  @media (min-width: 560px) { .dash-row { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+  .panel { display: grid; gap: 10px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--border); min-width: 0; }
+  .panel h4 { font-size: 0.9rem; font-weight: 700; color: var(--fg); display: flex; justify-content: space-between; gap: 8px; }
+  .panel h4 span { color: var(--muted); font-weight: 600; font-family: var(--font-body); font-size: 0.78rem; }
+  .bars { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; align-items: end; height: 92px; }
+  .bar { display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; height: 100%; min-width: 0; }
+  .bar i {
+    display: block;
+    flex: 0 0 auto;
+    height: var(--v);
+    border-radius: 6px 6px 2px 2px;
+    background: var(--teal-light);
+  }
+  .bar.cur i { background: var(--orange); }
+  .bar b { font-size: 0.68rem; font-weight: 600; color: var(--muted); text-align: center; font-variant-numeric: tabular-nums; }
+  .agenda { list-style: none; display: grid; gap: 8px; }
+  .agenda li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; font-size: 0.85rem; }
+  .agenda time {
+    display: grid; justify-items: center;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: var(--teal-soft);
+    color: var(--teal-text);
+    font-weight: 700;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    min-width: 44px;
+  }
+  .agenda time strong { font-size: 1rem; }
+  .agenda .ev { display: grid; gap: 1px; min-width: 0; }
+  .agenda .ev span { color: var(--muted); font-size: 0.78rem; }
+  .dash-foot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 0.85rem; padding: 10px 12px; border-radius: 12px; background: var(--orange-soft); color: var(--fg); }
+  .dash-foot svg { width: 18px; height: 18px; color: var(--orange-text); flex: none; }
+
+  /* Problema */
+  .problems { display: grid; gap: 18px; }
+  @media (min-width: 768px) { .problems { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .problem {
+    display: grid; gap: 14px;
+    padding: 22px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-width: 0;
+  }
+  .problem h3 { font-size: 1.2rem; }
+  .before-after { display: grid; gap: 10px; }
+  .before-after div { display: grid; gap: 4px; padding: 12px 14px; border-radius: var(--radius-sm); font-size: 0.97rem; }
+  .before-after .before { background: var(--surface-2); }
+  .before-after .after { background: var(--teal-soft); }
+  .before-after b { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: .06em; text-transform: uppercase; }
+  .before-after .before b { color: var(--muted); }
+  .before-after .after b { color: var(--teal-text); }
+
+  /* Funzionalità */
+  .features { display: grid; gap: 18px; }
+  @media (min-width: 640px) { .features { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .features { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .feature {
+    display: grid; gap: 12px; align-content: start;
+    padding: 22px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-width: 0;
+  }
+  .feature .ico {
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    border-radius: 12px;
+    background: var(--teal-soft);
+    color: var(--teal-text);
+  }
+  .feature:nth-child(3n+2) .ico { background: var(--orange-soft); color: var(--orange-text); }
+  .feature .ico svg { width: 24px; height: 24px; }
+  .feature p { color: var(--muted); font-size: 0.98rem; }
+  .example {
+    display: grid; gap: 4px;
+    padding: 12px 14px;
+    border-left: 3px solid var(--orange);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--surface-2);
+    font-size: 0.93rem;
+    color: var(--fg);
+  }
+  .example b { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--orange-text); }
+
+  /* Come funziona */
+  .steps { display: grid; gap: 18px; counter-reset: step; }
+  @media (min-width: 768px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .step {
+    display: grid; gap: 12px; align-content: start;
+    padding: 22px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-width: 0;
+  }
+  .step-num {
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: var(--teal);
+    color: var(--surface);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .step p { color: var(--muted); font-size: 0.98rem; }
+  .auto { display: grid; gap: 6px; padding: 12px 14px; border-radius: var(--radius-sm); background: var(--teal-soft); font-size: 0.93rem; }
+  .auto b { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--teal-text); }
+  .auto ul { list-style: none; display: grid; gap: 4px; }
+  .auto li { display: flex; gap: 8px; align-items: flex-start; }
+  .auto li::before { content: "✓"; color: var(--teal-text); font-weight: 700; flex: none; }
+
+  /* Ruoli */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 0.95rem; }
+  th, td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+  thead th { background: var(--surface-2); font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.role { font-family: var(--font-display); font-weight: 700; color: var(--navy-text); white-space: nowrap; font-size: 1rem; }
+  td { font-variant-numeric: tabular-nums; }
+  .table-note { color: var(--muted); font-size: 0.92rem; }
+
+  /* Sicurezza */
+  .security { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .security { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .security { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .sec {
+    display: grid; gap: 10px; align-content: start;
+    padding: 20px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-width: 0;
+  }
+  .sec svg { width: 28px; height: 28px; color: var(--teal-text); }
+  .sec h3 { font-size: 1.05rem; }
+  .sec p { color: var(--muted); font-size: 0.93rem; }
+
+  /* Prezzi */
+  .plans { display: grid; gap: 18px; align-items: stretch; }
+  @media (min-width: 900px) { .plans { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .plan {
+    display: grid; gap: 16px; align-content: start;
+    padding: 26px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-width: 0;
+    position: relative;
+  }
+  .plan.featured { border-color: var(--teal); box-shadow: 0 20px 40px -28px rgb(var(--shadow-color) / .5); }
+  .plan .tag { justify-self: start; }
+  .plan-price { display: grid; gap: 2px; }
+  .plan-price strong { font-family: var(--font-display); font-size: 2rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .plan-price span { color: var(--muted); font-size: 0.92rem; }
+  .plan ul { list-style: none; display: grid; gap: 8px; font-size: 0.97rem; }
+  .plan li { display: flex; gap: 10px; align-items: flex-start; }
+  .plan li svg { width: 20px; height: 20px; flex: none; color: var(--teal-text); margin-top: 3px; }
+  .plan .btn { justify-self: stretch; }
+  .price-note { color: var(--muted); font-size: 0.92rem; }
+
+  /* FAQ */
+  .faq-list { display: grid; gap: 10px; max-width: 820px; }
+  .faq {
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .faq-q {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    width: 100%;
+    padding: 16px 18px;
+    background: none; border: 0;
+    text-align: left;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--fg);
+    cursor: pointer;
+  }
+  .faq-q:hover { color: var(--teal-text); }
+  .faq-q:focus-visible { outline-offset: -3px; }
+  .faq-q svg { width: 22px; height: 22px; flex: none; color: var(--teal-text); transition: transform .2s ease; }
+  .faq-q[aria-expanded="true"] svg { transform: rotate(45deg); }
+  .faq-a { padding: 0 18px 18px; color: var(--muted); font-size: 0.98rem; display: grid; gap: 8px; }
+  .faq-a[hidden] { display: none; }
+
+  /* Registrazione */
+  .register-grid { display: grid; gap: 32px; align-items: start; }
+  @media (min-width: 960px) { .register-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; } }
+  .register-aside { display: grid; gap: 18px; min-width: 0; }
+  .register-aside ul { list-style: none; display: grid; gap: 10px; color: var(--muted); }
+  .register-aside li { display: flex; gap: 10px; align-items: flex-start; }
+  .register-aside li svg { width: 20px; height: 20px; flex: none; color: var(--teal-text); margin-top: 4px; }
+  .form-card {
+    display: grid; gap: 18px;
+    padding: clamp(18px, 3vw, 32px);
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 48px -32px rgb(var(--shadow-color) / .4);
+    min-width: 0;
+  }
+  .form-grid { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .form-grid .full { grid-column: 1 / -1; } }
+  .field { display: grid; gap: 6px; min-width: 0; }
+  .field label { font-weight: 700; font-size: 0.95rem; }
+  .field .hint { color: var(--muted); font-size: 0.85rem; }
+  .req { color: var(--orange-text); }
+  .input {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--fg);
+    font: inherit;
+    font-size: 1rem;
+  }
+  .input:focus { border-color: var(--teal); background: var(--surface); }
+  .input[aria-invalid="true"] { border-color: var(--err); }
+  select.input { appearance: none; -webkit-appearance: none; padding-right: 40px; background-image: none; }
+  .select-wrap { position: relative; }
+  .select-wrap svg { position: absolute; right: 12px; top: 50%; width: 20px; height: 20px; transform: translateY(-50%); pointer-events: none; color: var(--muted); }
+  .field-error { color: var(--err); font-size: 0.88rem; font-weight: 600; }
+  .field-error[hidden] { display: none; }
+  .pw-wrap { position: relative; }
+  .pw-wrap .input { padding-right: 84px; }
+  .pw-toggle {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    min-height: 36px; padding: 4px 10px;
+    border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--teal-text);
+    font: inherit; font-size: 0.82rem; font-weight: 700;
+    cursor: pointer;
+  }
+  .strength { display: grid; gap: 6px; }
+  .strength-bars { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+  .strength-bars i { display: block; height: 6px; border-radius: 3px; background: var(--border); }
+  .strength[data-level="1"] i:nth-child(-n+1) { background: var(--err); }
+  .strength[data-level="2"] i:nth-child(-n+2) { background: var(--orange); }
+  .strength[data-level="3"] i:nth-child(-n+3) { background: var(--teal-light); }
+  .strength[data-level="4"] i:nth-child(-n+4) { background: var(--ok); }
+  .strength-text { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+  .check { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; }
+  .check input { width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--teal); }
+  .check label { font-weight: 400; font-size: 0.95rem; }
+  .check-field { display: grid; gap: 6px; }
+  .form-actions { display: grid; gap: 12px; }
+  .form-actions .btn { justify-self: start; min-width: 240px; }
+  .form-alert { display: grid; gap: 4px; padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid; font-size: 0.97rem; }
+  .form-alert[hidden] { display: none; }
+  .form-alert.error { background: var(--err-soft); border-color: var(--err); color: var(--fg); }
+  .form-alert.success { background: var(--ok-soft); border-color: var(--ok); color: var(--fg); }
+  .form-alert strong { font-family: var(--font-display); }
+  .form-alert.error strong { color: var(--err); }
+  .form-alert.success strong { color: var(--ok); }
+  .form-note { color: var(--muted); font-size: 0.85rem; }
+
+  /* CTA finale */
+  .cta-final { padding-block: clamp(56px, 8vw, 96px); background: linear-gradient(100deg, #0C7088 0%, #1088A0 45%, #D9682E 100%); }
+  .cta-final .wrap { gap: 18px; justify-items: center; text-align: center; color: #FFFFFF; }
+  .cta-final h2 { color: #FFFFFF; text-shadow: 0 1px 2px rgb(0 0 0 / .25); }
+  .cta-final p { max-width: 60ch; font-size: 1.1rem; font-weight: 600; color: #FFFFFF; text-shadow: 0 1px 3px rgb(0 0 0 / .35); }
+  .cta-final .btn-light { color: #0C7088; background: #FFFFFF; }
+  .cta-final .btn-light:hover { color: #0C7088; background: #F4F6F8; }
+
+  /* Footer */
+  .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding-block: 40px max(40px, env(safe-area-inset-bottom, 0px)); color: var(--muted); font-size: 0.95rem; }
+  .site-footer .wrap { gap: 28px; }
+  .footer-grid { display: grid; gap: 24px; }
+  @media (min-width: 768px) { .footer-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); } }
+  .footer-brand { display: grid; gap: 12px; justify-items: start; min-width: 0; }
+  .footer-brand img { width: 120px; height: 88px; object-fit: contain; border-radius: 10px; background: #F6F7F9; }
+  .footer-col { display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .footer-col h3 { font-size: 0.85rem; letter-spacing: .06em; text-transform: uppercase; color: var(--fg); }
+  .footer-col ul { list-style: none; display: grid; gap: 6px; }
+  .footer-col a { color: var(--muted); text-decoration: none; }
+  .footer-col a:hover { color: var(--teal-text); text-decoration: underline; }
+  .footer-col address { font-style: normal; display: grid; gap: 4px; user-select: text; }
+  .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.88rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    .btn:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <div class="wrap">
+    <a class="logo-link" href="#top" aria-label="ASSOVITA.it, torna all'inizio">
+      <img src="logo-symbol.jpg" alt="" width="50" height="42">
+      <span class="brand"><span class="asso">ASSO</span><span class="vita">VITA</span><span class="it">.it</span></span>
+    </a>
+    <div class="header-actions">
+      <a class="btn btn-primary btn-sm header-cta" href="#registrati">Registra la tua associazione</a>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Attiva il tema scuro">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Apri il menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Sezioni della pagina">
+      <ul>
+        <li><a href="#funzionalita">Funzionalità</a></li>
+        <li><a href="#come-funziona">Come funziona</a></li>
+        <li><a href="#ruoli">Ruoli</a></li>
+        <li><a href="#prezzi">Prezzi</a></li>
+        <li><a href="#domande">Domande</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="#registrati">Registra la tua associazione</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Gestionale online per associazioni</span>
+          <h1 id="hero-title">Soci, tessere, quote e ricevute: tutto in ordine, senza fogli volanti.</h1>
+          <p class="lead"><span class="brand"><span class="asso">ASSO</span><span class="vita">VITA</span><span class="it">.it</span></span> è il gestionale online per ASD, APS, ODV e associazioni culturali, musicali e sportive. Registri i soci, incassi le quote, emetti le ricevute e chiudi il rendiconto dallo stesso posto, da computer o da telefono.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#registrati">Registra la tua associazione</a>
+            <a class="btn btn-secondary" href="#come-funziona">Scopri come funziona</a>
+          </div>
+          <ul class="hero-notes" aria-label="In breve">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Piano Gratuito fino a 50 soci</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nessuna installazione</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dati custoditi in Europa</li>
+          </ul>
+        </div>
+
+        <div class="dash" role="img" aria-label="Anteprima della dashboard di ASSOVITA.it con dati di esempio: soci attivi, quote incassate nel mese, tessere in scadenza e prossime attività.">
+          <div class="dash-head">
+            <div class="dash-title">
+              <strong>Polisportiva Esempio</strong>
+              <span>Stagione 2026/27 · aggiornato oggi</span>
+            </div>
+            <span class="tag tag-sample">Dati di esempio</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">Soci attivi</span>
+              <span class="stat-value">184</span>
+              <span class="stat-delta up">+6 nel mese</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Quote incassate a ottobre</span>
+              <span class="stat-value">€ 3.420</span>
+              <span class="stat-delta">38 pagamenti registrati</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Tessere in scadenza</span>
+              <span class="stat-value">12</span>
+              <span class="stat-delta warn">entro 30 giorni</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Prossime attività</span>
+              <span class="stat-value">5</span>
+              <span class="stat-delta">questa settimana</span>
+            </div>
+          </div>
+          <div class="dash-row">
+            <div class="panel">
+              <h4>Quote incassate <span>ultimi 6 mesi</span></h4>
+              <div class="bars">
+                <div class="bar"><i style="--v:58%"></i><b>mag</b></div>
+                <div class="bar"><i style="--v:40%"></i><b>giu</b></div>
+                <div class="bar"><i style="--v:22%"></i><b>lug</b></div>
+                <div class="bar"><i style="--v:18%"></i><b>ago</b></div>
+                <div class="bar"><i style="--v:92%"></i><b>set</b></div>
+                <div class="bar cur"><i style="--v:76%"></i><b>ott</b></div>
+              </div>
+            </div>
+            <div class="panel">
+              <h4>Prossime attività</h4>
+              <ul class="agenda">
+                <li><time datetime="2026-11-03T18:00">lun<strong>3</strong></time><div class="ev">Corso pallavolo Under 14<span>18:00 · Palestra comunale · 16 iscritti</span></div></li>
+                <li><time datetime="2026-11-05T20:30">mer<strong>5</strong></time><div class="ev">Prova del coro<span>20:30 · Sala civica · 24 iscritti</span></div></li>
+                <li><time datetime="2026-11-08T10:00">sab<strong>8</strong></time><div class="ev">Assemblea dei soci<span>10:00 · Sede · convocazione inviata</span></div></li>
+              </ul>
+            </div>
+          </div>
+          <div class="dash-foot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+            <span><strong>3 quote scadute</strong> · promemoria pronto per Mario Rossi, Lucia Bianchi, Paolo Verdi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="band band-alt" aria-labelledby="problema-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow accent">Il problema che risolve</span>
+        <h2 id="problema-title">Tre situazioni che conosci bene, e come cambiano</h2>
+        <p>Il lavoro di segreteria di un'associazione è fatto di compiti ripetitivi che oggi passano da carta, WhatsApp ed Excel. ASSOVITA.it li esegue al posto tuo, nello stesso ordine in cui li faresti a mano.</p>
+      </div>
+      <div class="problems">
+        <article class="problem">
+          <h3>Tessere rinnovate a mano</h3>
+          <div class="before-after">
+            <div class="before"><b>Oggi</b><span>A settembre il segretario riscrive 150 tessere, cerca sul quaderno l'ultimo numero usato e qualche numero salta o si ripete.</span></div>
+            <div class="after"><b>Con ASSOVITA.it</b><span>Il rinnovo di Mario Rossi assegna la tessera n. 0231 in automatico, la successiva sarà la n. 0232. La tessera digitale arriva al socio via email.</span></div>
+          </div>
+        </article>
+        <article class="problem">
+          <h3>Ricevute su carta</h3>
+          <div class="before-after">
+            <div class="before"><b>Oggi</b><span>Blocchetto a ricalco, copia che si perde, numerazione da ricostruire quando il commercialista la chiede.</span></div>
+            <div class="after"><b>Con ASSOVITA.it</b><span>Ogni incasso registrato genera la ricevuta n. 2026/0147 in PDF e la invia all'indirizzo del socio. L'originale resta archiviato.</span></div>
+          </div>
+        </article>
+        <article class="problem">
+          <h3>Rendiconto ricostruito da Excel</h3>
+          <div class="before-after">
+            <div class="before"><b>Oggi</b><span>A gennaio si rimettono insieme dodici mesi di entrate e uscite da estratti conto, fogli diversi e messaggi vocali.</span></div>
+            <div class="after"><b>Con ASSOVITA.it</b><span>La prima nota si compila mentre incassi e paghi. A fine anno esporti entrate e uscite per centro di costo, già nel formato per il rendiconto.</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNZIONALITÀ -->
+  <section class="band" id="funzionalita" aria-labelledby="funzionalita-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Funzionalità operative</span>
+        <h2 id="funzionalita-title">Tutto quello che fa una segreteria, con un esempio per ogni cosa</h2>
+        <p>Niente moduli da attivare o configurare: ogni funzione è pensata attorno a un compito reale della vita associativa.</p>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <h3>Anagrafica soci</h3>
+          <p>Scheda completa per ogni socio con stato (attivo, sospeso, in attesa di rinnovo), documenti allegati, consensi privacy e storico dei pagamenti.</p>
+          <div class="example"><b>Esempio</b><span>Mario Rossi risulta «in attesa di rinnovo» dal 1° ottobre: la scheda mostra il certificato medico in scadenza e il consenso privacy firmato il 12/09/2025.</span></div>
+        </article>
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></span>
+          <h3>Tesseramento</h3>
+          <p>Numero di tessera progressivo assegnato in automatico, stagione associativa, tessera digitale da mostrare dal telefono e stampa per chi la vuole su carta.</p>
+          <div class="example"><b>Esempio</b><span>Al rinnovo di Lucia Bianchi il sistema assegna la tessera n. 0232 per la stagione 2026/27 e le invia la versione digitale con codice a barre.</span></div>
+        </article>
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 6.5A7 7 0 1 0 18.5 17.5"/><path d="M4 10h10"/><path d="M4 14h10"/></svg></span>
+          <h3>Quote e pagamenti</h3>
+          <p>Quote mensili o annuali, incasso con registrazione del metodo (contanti, bonifico, POS, SumUp, PayPal), promemoria automatici a chi è in ritardo.</p>
+          <div class="example"><b>Esempio</b><span>La quota di ottobre del corso di yoga (€ 45) risulta non pagata da 10 giorni: il promemoria parte via email e WhatsApp e si ferma appena il tesoriere registra il bonifico.</span></div>
+        </article>
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/></svg></span>
+          <h3>Ricevute numerate</h3>
+          <p>Ogni incasso genera una ricevuta con numero progressivo annuale, in PDF, con i dati dell'associazione e del socio, inviata via email e archiviata.</p>
+          <div class="example"><b>Esempio</b><span>La ricevuta n. 2026/0147 viene generata e inviata a mario.rossi@esempio.it; la copia resta nell'archivio e nell'estratto del commercialista.</span></div>
+        </article>
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="M8 14h2"/><path d="M14 14h2"/><path d="M8 18h2"/></svg></span>
+          <h3>Corsi, lezioni e attività</h3>
+          <p>Calendario per corso e sede, iscrizioni con posti disponibili, registro presenze dal telefono dell'istruttore, calcolo dei compensi per ore svolte.</p>
+          <div class="example"><b>Esempio</b><span>Corso pallavolo Under 14, lunedì e giovedì 18:00: 16 iscritti su 18 posti; l'istruttrice segna le presenze a fine lezione e il compenso del mese si calcola da solo.</span></div>
+        </article>
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l2-5.1A8.4 8.4 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4z"/></svg></span>
+          <h3>Comunicazioni</h3>
+          <p>Email e messaggi WhatsApp ai soci con filtri per corso, stato o scadenza. Ogni invio resta tracciato nella scheda del socio.</p>
+          <div class="example"><b>Esempio</b><span>«Iscritti al coro con tessera in scadenza entro 30 giorni»: 9 destinatari, un solo messaggio con il link per rinnovare.</span></div>
+        </article>
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg></span>
+          <h3>Rendiconto e prima nota</h3>
+          <p>Entrate e uscite per centro di costo (corsi, eventi, sede), riconciliazione con la banca, esportazione per il commercialista e prospetto nel formato del rendiconto ETS.</p>
+          <div class="example"><b>Esempio</b><span>A dicembre il tesoriere esporta «Entrate per attività 2026»: quote associative, corsi e contributi separati, pronti per il rendiconto per cassa.</span></div>
+        </article>
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          <h3>Ruoli e permessi</h3>
+          <p>Amministratore, Segreteria, Tesoriere, Istruttore e Socio: ognuno vede e modifica solo ciò che gli serve. Nessun foglio condiviso con tutti i dati.</p>
+          <div class="example"><b>Esempio</b><span>L'istruttore del corso di chitarra vede i suoi iscritti e segna le presenze, ma non vede i pagamenti né gli altri corsi.</span></div>
+        </article>
+        <article class="feature">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+          <h3>Multi-associazione</h3>
+          <p>Un solo accesso per chi segue più enti: passi da un'associazione all'altra senza cambiare utente, con dati e numerazioni sempre separati.</p>
+          <div class="example"><b>Esempio</b><span>Chi fa il segretario della Polisportiva e della Pro Loco entra una volta sola e sceglie l'ente dal menu in alto.</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA -->
+  <section class="band band-alt" id="come-funziona" aria-labelledby="come-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow accent">Come funziona</span>
+        <h2 id="come-title">In quattro passi, e molte cose succedono da sole</h2>
+        <p>Dal primo accesso alla prima ricevuta inviata servono meno di un pomeriggio. Ecco cosa fai tu e cosa fa il sistema.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Registri l'associazione</h3>
+          <p>Compili il modulo in fondo a questa pagina con nome, tipologia e referente. Confermi l'email e sei dentro.</p>
+          <div class="auto"><b>In automatico</b><ul><li>Viene creato il tuo spazio con il piano Gratuito.</li><li>Stagione associativa e numerazioni partono da zero.</li></ul></div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>Importi o inserisci i soci</h3>
+          <p>Carichi il file Excel o CSV che usi oggi, oppure inserisci i soci uno alla volta. Puoi anche far compilare la scheda al socio con un link.</p>
+          <div class="auto"><b>In automatico</b><ul><li>Controllo dei duplicati e dei codici fiscali.</li><li>Ogni socio riceve il numero di tessera e lo stato iniziale.</li></ul></div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>Imposti quote e attività</h3>
+          <p>Definisci la quota associativa, i corsi con le loro quote mensili o annuali, le sedi e gli istruttori.</p>
+          <div class="auto"><b>In automatico</b><ul><li>Vengono generati i dovuti per ogni socio iscritto.</li><li>Il calendario delle lezioni si compila per tutta la stagione.</li></ul></div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">4</span>
+          <h3>Incassi, emetti ricevute e comunichi</h3>
+          <p>Registri un pagamento in tre tocchi, anche dal telefono. Scrivi ai soci filtrando per corso o scadenza.</p>
+          <div class="auto"><b>In automatico</b><ul><li>Ricevuta PDF numerata e inviata via email.</li><li>Prima nota aggiornata e promemoria a chi è in ritardo.</li></ul></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- RUOLI -->
+  <section class="band" id="ruoli" aria-labelledby="ruoli-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Ruoli</span>
+        <h2 id="ruoli-title">Ognuno vede quello che gli serve, niente di più</h2>
+        <p>I ruoli si assegnano dalla scheda del socio. Una stessa persona può avere più ruoli, anche in associazioni diverse.</p>
+      </div>
+      <div class="table-scroll" role="region" aria-label="Tabella dei ruoli e dei permessi" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Ruolo</th>
+              <th scope="col">Cosa vede</th>
+              <th scope="col">Cosa può fare</th>
+              <th scope="col">Esempio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="role">Amministratore</td>
+              <td>Tutto: soci, pagamenti, rendiconto, impostazioni, registro delle attività svolte dagli altri ruoli.</td>
+              <td>Assegna i ruoli, modifica quote e stagione, esporta i dati, chiude l'anno.</td>
+              <td>Il presidente assegna il ruolo Tesoriere a Paolo Verdi e chiude la stagione 2025/26.</td>
+            </tr>
+            <tr>
+              <td class="role">Segreteria</td>
+              <td>Anagrafica completa, tessere, iscrizioni ai corsi, comunicazioni.</td>
+              <td>Inserisce e rinnova i soci, emette tessere, invia email e WhatsApp.</td>
+              <td>Rinnova la tessera n. 0231 di Mario Rossi e invia la convocazione dell'assemblea.</td>
+            </tr>
+            <tr>
+              <td class="role">Tesoriere</td>
+              <td>Dovuti, incassi, ricevute, prima nota, esportazioni contabili.</td>
+              <td>Registra pagamenti, emette e annulla ricevute, riconcilia con la banca.</td>
+              <td>Registra il bonifico di € 120 e la ricevuta n. 2026/0148 parte da sola.</td>
+            </tr>
+            <tr>
+              <td class="role">Istruttore</td>
+              <td>Solo i propri corsi: iscritti, calendario, presenze, riepilogo ore.</td>
+              <td>Segna le presenze, annota assenze giustificate, scrive ai propri iscritti.</td>
+              <td>Dopo la lezione del lunedì segna 14 presenti su 16 dal telefono.</td>
+            </tr>
+            <tr>
+              <td class="role">Socio</td>
+              <td>La propria scheda, tessera digitale, ricevute, scadenze e calendario dei propri corsi.</td>
+              <td>Aggiorna i propri recapiti, scarica le ricevute, segnala un pagamento.</td>
+              <td>Lucia Bianchi scarica la ricevuta n. 2026/0147 per la detrazione.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Su schermi piccoli la tabella scorre in orizzontale.</p>
+    </div>
+  </section>
+
+  <!-- SICUREZZA -->
+  <section class="band band-alt" id="sicurezza" aria-labelledby="sicurezza-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow accent">Sicurezza e conformità</span>
+        <h2 id="sicurezza-title">I dati dei soci sono una responsabilità. Li trattiamo così.</h2>
+      </div>
+      <div class="security">
+        <article class="sec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
+          <h3>Dati in Europa</h3>
+          <p>Server e copie di sicurezza in centri dati dell'Unione Europea. Nessun trasferimento fuori dall'UE.</p>
+        </article>
+        <article class="sec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+          <h3>Backup giornaliero</h3>
+          <p>Copia completa ogni notte, conservata per 30 giorni. In caso di errore si recupera lo stato del giorno prima.</p>
+        </article>
+        <article class="sec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><path d="M12 15v3"/></svg>
+          <h3>Accesso protetto</h3>
+          <p>Password con requisiti minimi e autenticazione a due fattori opzionale per ogni utente, consigliata ad amministratori e tesorieri.</p>
+        </article>
+        <article class="sec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3>GDPR</h3>
+          <p>Consensi registrati con data, registro dei trattamenti, nomina come responsabile del trattamento inclusa nel contratto.</p>
+        </article>
+        <article class="sec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          <h3>Dati sempre esportabili</h3>
+          <p>Soci, pagamenti, ricevute e prima nota si esportano in Excel, CSV e PDF in qualunque momento, anche se decidi di andartene.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREZZI -->
+  <section class="band" id="prezzi" aria-labelledby="prezzi-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Prezzi</span>
+        <h2 id="prezzi-title">Si parte gratis, si cresce quando serve</h2>
+        <p>Il piano Gratuito non scade. Passi a un piano superiore solo quando superi i 50 soci o ti servono ricevute PDF, comunicazioni e rendiconto.</p>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <span class="tag tag-teal">Per iniziare</span>
+          <h3>Gratuito</h3>
+          <div class="plan-price"><strong>0 €</strong><span>per sempre, fino a 50 soci</span></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Anagrafica soci e tesseramento con numerazione automatica</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Quote e registrazione dei pagamenti</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Calendario corsi e presenze</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Esportazione dei dati</span></li>
+          </ul>
+          <a class="btn btn-secondary" href="#registrati">Inizia gratis</a>
+        </article>
+        <article class="plan featured">
+          <span class="tag tag-teal">Il più richiesto</span>
+          <h3>Associazione</h3>
+          <div class="plan-price"><strong>da definire</strong><span>quota annuale, in base al numero di soci</span></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Tutto il piano Gratuito, soci illimitati</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Ricevute PDF numerate e inviate via email</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Comunicazioni email e WhatsApp con filtri</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Rendiconto, prima nota ed esportazione per il commercialista</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Promemoria automatici per le quote scadute</span></li>
+          </ul>
+          <a class="btn btn-primary" href="#registrati">Registra l'associazione</a>
+        </article>
+        <article class="plan">
+          <span class="tag tag-teal">Per chi gestisce più enti</span>
+          <h3>Rete</h3>
+          <div class="plan-price"><strong>da definire</strong><span>su preventivo, in base al numero di associazioni</span></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Tutto il piano Associazione</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Multi-associazione con un solo accesso</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Ruoli avanzati e permessi personalizzati</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Supporto prioritario e aiuto nell'importazione iniziale</span></li>
+          </ul>
+          <a class="btn btn-secondary" href="mailto:info@assovita.it?subject=Piano%20Rete">Chiedi un preventivo</a>
+        </article>
+      </div>
+      <p class="price-note">Prezzi indicativi, IVA esclusa. Le cifre dei piani Associazione e Rete saranno pubblicate prima dell'apertura al pubblico; chi si registra ora sul piano Gratuito riceverà le condizioni via email, senza alcun obbligo.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band band-alt" id="domande" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow accent">Domande frequenti</span>
+        <h2 id="faq-title">Le domande che ci fanno prima di iscriversi</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq">
+          <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-1">Serve installare qualcosa?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3>
+          <div class="faq-a" id="faq-1" hidden>
+            <p>No. ASSOVITA.it funziona dal browser (Chrome, Safari, Firefox, Edge) su computer, tablet e telefono. Non c'è nulla da scaricare né da aggiornare: le novità arrivano da sole.</p>
+          </div>
+        </div>
+        <div class="faq">
+          <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-2">Posso importare i soci da Excel?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3>
+          <div class="faq-a" id="faq-2" hidden>
+            <p>Sì. Carichi il file Excel o CSV che usi oggi, abbini le colonne (nome, cognome, codice fiscale, email, telefono, data di nascita) e il sistema segnala duplicati e codici fiscali non validi prima di importare. Puoi provare l'importazione e annullarla se il risultato non ti convince.</p>
+          </div>
+        </div>
+        <div class="faq">
+          <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-3">I dati sono miei?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3>
+          <div class="faq-a" id="faq-3" hidden>
+            <p>Sì. L'associazione è titolare del trattamento, ASSOVITA.it è responsabile del trattamento per conto vostro. Puoi esportare soci, pagamenti, ricevute e prima nota quando vuoi, in Excel, CSV e PDF. Se chiudi l'account, i dati vengono cancellati entro 30 giorni dalla richiesta.</p>
+          </div>
+        </div>
+        <div class="faq">
+          <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-4">Funziona da telefono?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3>
+          <div class="faq-a" id="faq-4" hidden>
+            <p>Sì, tutta l'interfaccia è pensata anche per lo schermo del telefono. Le operazioni più frequenti sul campo (registrare un incasso, segnare le presenze, cercare un socio, mostrare la tessera digitale) richiedono pochi tocchi.</p>
+          </div>
+        </div>
+        <div class="faq">
+          <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-5">Posso disdire quando voglio?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3>
+          <div class="faq-a" id="faq-5" hidden>
+            <p>Sì. Il piano Gratuito non ha scadenza né vincoli. I piani a pagamento si disdicono dalle impostazioni senza preavviso: resti sul piano fino alla fine del periodo già pagato e poi torni al piano Gratuito, oppure esporti tutto e chiudi l'account.</p>
+          </div>
+        </div>
+        <div class="faq">
+          <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-6">Chi vede i dati dei soci?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3>
+          <div class="faq-a" id="faq-6" hidden>
+            <p>Solo le persone a cui l'amministratore assegna un ruolo, e ciascuna solo per la parte che le compete: l'istruttore vede i propri iscritti, il tesoriere i pagamenti, il socio la propria scheda. Il personale di ASSOVITA.it accede ai dati solo su vostra richiesta di assistenza, e ogni accesso viene registrato.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRAZIONE -->
+  <section class="band" id="registrati" aria-labelledby="registrati-title">
+    <div class="wrap">
+      <div class="register-grid">
+        <div class="register-aside">
+          <span class="eyebrow">Registrazione</span>
+          <h2 id="registrati-title">Registra la tua associazione</h2>
+          <p>Compila il modulo: ricevi subito un'email di conferma e in pochi minuti puoi caricare i primi soci. Il piano Gratuito non richiede carta di credito.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Nessun costo e nessun vincolo per il piano Gratuito</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Il codice fiscale dell'associazione puoi aggiungerlo anche dopo</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Il referente diventa Amministratore e può invitare gli altri ruoli</span></li>
+          </ul>
+          <p class="form-note">Per domande prima di registrarti scrivi a <a href="mailto:info@assovita.it">info@assovita.it</a>.</p>
+        </div>
+
+        <form class="form-card" id="register-form" novalidate aria-describedby="form-intro">
+          <p id="form-intro" class="form-note">I campi con <span class="req" aria-hidden="true">*</span> sono obbligatori.</p>
+
+          <div class="form-grid">
+            <div class="field full">
+              <label for="assoc-name">Nome dell'associazione <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="assoc-name" name="associationName" type="text" autocomplete="organization" required aria-required="true" aria-describedby="assoc-name-error" placeholder="Es. Polisportiva Esempio ASD">
+              <p class="field-error" id="assoc-name-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="assoc-type">Tipologia <span class="req" aria-hidden="true">*</span></label>
+              <div class="select-wrap">
+                <select class="input" id="assoc-type" name="associationType" required aria-required="true" aria-describedby="assoc-type-error">
+                  <option value="">Scegli la tipologia</option>
+                  <option value="ASD">ASD – Associazione sportiva dilettantistica</option>
+                  <option value="APS">APS – Associazione di promozione sociale</option>
+                  <option value="ODV">ODV – Organizzazione di volontariato</option>
+                  <option value="Culturale">Associazione culturale</option>
+                  <option value="Altro">Altro</option>
+                </select>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+              <p class="field-error" id="assoc-type-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="assoc-cf">Codice fiscale dell'associazione</label>
+              <input class="input" id="assoc-cf" name="associationTaxCode" type="text" inputmode="numeric" autocomplete="off" aria-describedby="assoc-cf-hint assoc-cf-error" placeholder="11 cifre, facoltativo">
+              <p class="hint" id="assoc-cf-hint">Facoltativo: lo trovi sul certificato di attribuzione dell'Agenzia delle Entrate.</p>
+              <p class="field-error" id="assoc-cf-error" hidden></p>
+            </div>
+
+            <div class="field full">
+              <label for="ref-name">Nome e cognome del referente <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="ref-name" name="contactName" type="text" autocomplete="name" required aria-required="true" aria-describedby="ref-name-error" placeholder="Es. Mario Rossi">
+              <p class="field-error" id="ref-name-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="ref-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="ref-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="ref-email-error" placeholder="nome@esempio.it">
+              <p class="field-error" id="ref-email-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="ref-phone">Telefono <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="ref-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-required="true" aria-describedby="ref-phone-error" placeholder="Es. 333 1234567">
+              <p class="field-error" id="ref-phone-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="password">Password <span class="req" aria-hidden="true">*</span></label>
+              <div class="pw-wrap">
+                <input class="input" id="password" name="password" type="password" autocomplete="new-password" required aria-required="true" minlength="8" aria-describedby="password-hint password-strength-text password-error">
+                <button class="pw-toggle" type="button" id="password-toggle" aria-controls="password" aria-pressed="false">Mostra</button>
+              </div>
+              <p class="hint" id="password-hint">Almeno 8 caratteri, con lettere e numeri.</p>
+              <div class="strength" id="password-strength" data-level="0">
+                <div class="strength-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                <p class="strength-text" id="password-strength-text" aria-live="polite">Robustezza: inserisci una password</p>
+              </div>
+              <p class="field-error" id="password-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="password-confirm">Conferma password <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="password-confirm" name="passwordConfirm" type="password" autocomplete="new-password" required aria-required="true" aria-describedby="password-confirm-error">
+              <p class="field-error" id="password-confirm-error" hidden></p>
+            </div>
+
+            <div class="check-field full">
+              <div class="check">
+                <input id="privacy" name="privacyAccepted" type="checkbox" required aria-required="true" aria-describedby="privacy-error">
+                <label for="privacy">Ho letto l'<a href="#privacy">informativa sulla privacy</a> e accetto i <a href="#termini">termini del servizio</a>. <span class="req" aria-hidden="true">*</span></label>
+              </div>
+              <p class="field-error" id="privacy-error" hidden></p>
+            </div>
+
+            <div class="check-field full">
+              <div class="check">
+                <input id="newsletter" name="newsletter" type="checkbox">
+                <label for="newsletter">Voglio ricevere la newsletter con novità e guide pratiche per le associazioni (facoltativo, massimo una al mese).</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <div class="form-alert error" id="form-error" role="alert" hidden></div>
+            <div class="form-alert success" id="form-success" role="status" hidden></div>
+            <button class="btn btn-primary" type="submit" id="submit-btn">Registra l'associazione</button>
+            <p class="form-note">Dopo l'invio riceverai un'email con il link per confermare l'account. Controlla anche la cartella spam.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINALE -->
+  <section class="cta-final" aria-labelledby="cta-title">
+    <div class="wrap">
+      <h2 id="cta-title">La prossima stagione, con la segreteria in ordine</h2>
+      <p>Registra oggi la tua associazione sul piano Gratuito: importi i soci, imposti le quote e alla prima lezione hai già tessere e ricevute pronte.</p>
+      <a class="btn btn-light" href="#registrati">Registra la tua associazione</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo.jpg" alt="Logo ASSOVITA.it: un libro aperto con figure stilizzate che alzano le braccia" width="120" height="90">
+        <span class="brand" style="font-size:1.4rem"><span class="asso">ASSO</span><span class="vita">VITA</span><span class="it">.it</span></span>
+        <p>Il gestionale online per associazioni sportive, culturali e di volontariato.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Informazioni legali</h3>
+        <ul>
+          <li><a href="#privacy" id="privacy">Informativa sulla privacy</a></li>
+          <li><a href="#cookie" id="cookie">Informativa sui cookie</a></li>
+          <li><a href="#termini" id="termini">Termini del servizio</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contatti</h3>
+        <address>
+          <span>Email: info@assovita.it</span>
+          <span>Assistenza: supporto@assovita.it</span>
+          <span>Orari: lunedì–venerdì, 9:00–18:00</span>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ASSOVITA.it</span>
+      <span>Pagina di presentazione · i dati nella dashboard sono di esempio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  'use strict';
+  // Endpoint di registrazione: unico punto di configurazione.
+  const REGISTER_ENDPOINT = '/api/register';
+
+  // ---------- Tema ----------
+  (function initTheme() {
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    let saved = null;
+    try { saved = localStorage.getItem('assovita-theme'); } catch (e) { saved = null; }
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+
+    function current() {
+      const forced = root.getAttribute('data-theme');
+      if (forced === 'dark' || forced === 'light') return forced;
+      return mq.matches ? 'dark' : 'light';
+    }
+    function updateLabel() {
+      const isDark = current() === 'dark';
+      btn.setAttribute('aria-label', isDark ? 'Attiva il tema chiaro' : 'Attiva il tema scuro');
+      btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function () {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('assovita-theme', next); } catch (e) { /* storage non disponibile */ }
+      updateLabel();
+    });
+    mq.addEventListener('change', updateLabel);
+    updateLabel();
+  })();
+
+  // ---------- Menu mobile ----------
+  (function initNav() {
+    const header = document.querySelector('.site-header');
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('site-nav');
+    function setOpen(open) {
+      header.classList.toggle('nav-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Chiudi il menu' : 'Apri il menu');
+    }
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    nav.addEventListener('click', function (ev) {
+      if (ev.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && header.classList.contains('nav-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  })();
+
+  // ---------- FAQ ----------
+  (function initFaq() {
+    const buttons = document.querySelectorAll('.faq-q');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const panel = document.getElementById(btn.getAttribute('aria-controls'));
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        if (open) panel.setAttribute('hidden', ''); else panel.removeAttribute('hidden');
+      });
+    });
+  })();
+
+  // ---------- Modulo di registrazione ----------
+  (function initForm() {
+    const form = document.getElementById('register-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const errorBox = document.getElementById('form-error');
+    const successBox = document.getElementById('form-success');
+    const strength = document.getElementById('password-strength');
+    const strengthText = document.getElementById('password-strength-text');
+    const pwToggle = document.getElementById('password-toggle');
+    const pwInput = document.getElementById('password');
+    let attempted = false;
+
+    const fields = {
+      'assoc-name': {
+        validate: function (v) {
+          if (!v.trim()) return 'Inserisci il nome dell\'associazione.';
+          if (v.trim().length < 3) return 'Il nome deve avere almeno 3 caratteri.';
+          return '';
+        }
+      },
+      'assoc-type': {
+        validate: function (v) { return v ? '' : 'Scegli la tipologia dell\'associazione.'; }
+      },
+      'assoc-cf': {
+        validate: function (v) {
+          const s = v.replace(/\s+/g, '').toUpperCase();
+          if (!s) return '';
+          if (/^\d{11}$/.test(s)) return '';
+          if (/^[A-Z0-9]{16}$/.test(s)) return '';
+          return 'Il codice fiscale deve avere 11 cifre (o 16 caratteri). Puoi anche lasciarlo vuoto.';
+        }
+      },
+      'ref-name': {
+        validate: function (v) {
+          if (!v.trim()) return 'Inserisci nome e cognome del referente.';
+          if (!/\S+\s+\S+/.test(v.trim())) return 'Inserisci sia il nome sia il cognome.';
+          return '';
+        }
+      },
+      'ref-email': {
+        validate: function (v) {
+          if (!v.trim()) return 'Inserisci l\'indirizzo email.';
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())) return 'L\'indirizzo email non sembra valido (es. nome@esempio.it).';
+          return '';
+        }
+      },
+      'ref-phone': {
+        validate: function (v) {
+          if (!v.trim()) return 'Inserisci un numero di telefono.';
+          const digits = v.replace(/\D/g, '');
+          if (digits.length < 8 || digits.length > 15 || !/^[+\d\s().-]+$/.test(v.trim())) return 'Il numero di telefono non sembra valido: usa solo cifre, spazi e il prefisso (+39).';
+          return '';
+        }
+      },
+      'password': {
+        validate: function (v) {
+          if (!v) return 'Scegli una password.';
+          if (v.length < 8) return 'La password deve avere almeno 8 caratteri.';
+          if (!/[A-Za-z]/.test(v) || !/\d/.test(v)) return 'La password deve contenere sia lettere sia numeri.';
+          return '';
+        }
+      },
+      'password-confirm': {
+        validate: function (v) {
+          if (!v) return 'Ripeti la password.';
+          if (v !== pwInput.value) return 'Le due password non coincidono.';
+          return '';
+        }
+      },
+      'privacy': {
+        validate: function (v, el) { return el.checked ? '' : 'Per registrarti devi accettare l\'informativa sulla privacy e i termini.'; }
+      }
+    };
+
+    function showFieldError(id, message) {
+      const el = document.getElementById(id);
+      const err = document.getElementById(id + '-error');
+      if (message) {
+        err.textContent = message;
+        err.removeAttribute('hidden');
+        el.setAttribute('aria-invalid', 'true');
+      } else {
+        err.textContent = '';
+        err.setAttribute('hidden', '');
+        el.removeAttribute('aria-invalid');
+      }
+    }
+
+    function validateField(id) {
+      const el = document.getElementById(id);
+      const msg = fields[id].validate(el.value, el);
+      showFieldError(id, msg);
+      return !msg;
+    }
+
+    function validateAll() {
+      let firstInvalid = null;
+      Object.keys(fields).forEach(function (id) {
+        const ok = validateField(id);
+        if (!ok && !firstInvalid) firstInvalid = id;
+      });
+      return firstInvalid;
+    }
+
+    Object.keys(fields).forEach(function (id) {
+      const el = document.getElementById(id);
+      const evt = (el.type === 'checkbox' || el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener('blur', function () { if (attempted || el.value) validateField(id); });
+      el.addEventListener(evt, function () {
+        if (attempted || el.getAttribute('aria-invalid') === 'true') validateField(id);
+        if (id === 'password' && document.getElementById('password-confirm').value) validateField('password-confirm');
+      });
+    });
+
+    // Robustezza password
+    function scorePassword(v) {
+      if (!v) return 0;
+      let s = 0;
+      if (v.length >= 8) s++;
+      if (v.length >= 12) s++;
+      if (/[a-z]/.test(v) && /[A-Z]/.test(v)) s++;
+      if (/\d/.test(v)) s++;
+      if (/[^A-Za-z0-9]/.test(v)) s++;
+      if (v.length < 8) return 1;
+      return Math.max(1, Math.min(4, s - 1));
+    }
+    const strengthLabels = ['inserisci una password', 'debole', 'discreta', 'buona', 'forte'];
+    pwInput.addEventListener('input', function () {
+      const level = scorePassword(pwInput.value);
+      strength.setAttribute('data-level', String(level));
+      strengthText.textContent = 'Robustezza: ' + strengthLabels[level] + (level === 1 ? ' – aggiungi caratteri, maiuscole o simboli' : '');
+    });
+
+    pwToggle.addEventListener('click', function () {
+      const show = pwInput.type === 'password';
+      pwInput.type = show ? 'text' : 'password';
+      pwToggle.textContent = show ? 'Nascondi' : 'Mostra';
+      pwToggle.setAttribute('aria-pressed', show ? 'true' : 'false');
+    });
+
+    function setAlert(box, html) {
+      if (html) { box.innerHTML = html; box.removeAttribute('hidden'); }
+      else { box.innerHTML = ''; box.setAttribute('hidden', ''); }
+    }
+
+    function setLoading(loading) {
+      submitBtn.disabled = loading;
+      submitBtn.setAttribute('aria-busy', loading ? 'true' : 'false');
+      submitBtn.textContent = loading ? 'Invio in corso…' : 'Registra l\'associazione';
+    }
+
+    form.addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      attempted = true;
+      setAlert(errorBox, '');
+      setAlert(successBox, '');
+
+      const firstInvalid = validateAll();
+      if (firstInvalid) {
+        setAlert(errorBox, '<strong>Controlla i campi evidenziati.</strong><span>Alcuni dati mancano o non sono corretti.</span>');
+        document.getElementById(firstInvalid).focus();
+        return;
+      }
+
+      const payload = {
+        associationName: form.elements.associationName.value.trim(),
+        associationType: form.elements.associationType.value,
+        associationTaxCode: form.elements.associationTaxCode.value.replace(/\s+/g, '').toUpperCase(),
+        contactName: form.elements.contactName.value.trim(),
+        email: form.elements.email.value.trim().toLowerCase(),
+        phone: form.elements.phone.value.trim(),
+        password: form.elements.password.value,
+        privacyAccepted: form.elements.privacyAccepted.checked,
+        newsletter: form.elements.newsletter.checked
+      };
+
+      setLoading(true);
+      try {
+        const res = await fetch(REGISTER_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+          let msg = 'Il server ha risposto con un errore (codice ' + res.status + '). Riprova tra qualche minuto; se il problema continua scrivi a supporto@assovita.it.';
+          try {
+            const data = await res.json();
+            if (data && typeof data.message === 'string' && data.message.trim()) msg = data.message;
+          } catch (e) { /* risposta senza JSON: si usa il messaggio generico */ }
+          setAlert(errorBox, '<strong>Registrazione non riuscita.</strong><span></span>');
+          errorBox.querySelector('span').textContent = msg;
+          return;
+        }
+        setAlert(successBox, '<strong>Registrazione inviata.</strong><span>Controlla la tua email per confermare l\'account. Se non la trovi entro qualche minuto, guarda nella cartella spam.</span>');
+        form.reset();
+        strength.setAttribute('data-level', '0');
+        strengthText.textContent = 'Robustezza: inserisci una password';
+        attempted = false;
+        Object.keys(fields).forEach(function (id) { showFieldError(id, ''); });
+        successBox.setAttribute('tabindex', '-1');
+        successBox.focus();
+      } catch (e) {
+        setAlert(errorBox, '<strong>Non siamo riusciti a contattare il server.</strong><span>Controlla la connessione a internet e riprova. I dati inseriti sono ancora nel modulo. Se il problema continua scrivi a supporto@assovita.it.</span>');
+      } finally {
+        setLoading(false);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
